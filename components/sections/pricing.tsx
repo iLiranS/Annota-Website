@@ -209,7 +209,7 @@ export function PricingSection() {
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <Check className="h-3 w-3 text-primary" />
                       </div>
-                      50MB Secure Cloud Storage
+                      25MB Secure Cloud Storage
                     </li>
                     <li className="flex items-center gap-3 font-semibold text-foreground">
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -307,7 +307,7 @@ export function PricingSection() {
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <Check className="h-3 w-3 text-primary" />
                       </div>
-                      5GB Secured Storage
+                      2.5GB Secured Storage
                     </li>
                     <li className="flex items-center gap-3 font-semibold text-foreground">
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
