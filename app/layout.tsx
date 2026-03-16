@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { cn } from "@/lib/utils";
 import { Metadata } from 'next';
-import { Analytics } from "@vercel/analytics/next"
+import { AnalyticsWrapper } from "@/components/analytics-wrapper"
 
 export const metadata: Metadata = {
   title: 'Annota App', // This is the website name/title
@@ -44,15 +44,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
-        <Analytics
-          beforeSend={(event) => {
-            // Drop the event if the URL is our background app relay
-            if (event.url.includes('/embed/')) {
-              return null;
-            }
-            return event;
-          }}
-        />
+        <AnalyticsWrapper />
       </body>
     </html>
   )
