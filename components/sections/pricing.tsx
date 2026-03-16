@@ -58,7 +58,7 @@ export function PricingSection() {
                   href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-primary text-primary-foreground px-10 py-4 rounded-full font-black uppercase tracking-[0.3em] text-2xl shadow-[0_0_30px_rgba(var(--primary),0.5)] -rotate-2 border-4 border-primary-foreground/20 transition-all hover:scale-105 hover:-rotate-0 active:scale-95 pointer-events-auto group relative overflow-hidden"
+                  className="bg-primary text-primary-foreground px-10 py-4 rounded-full font-black uppercase tracking-[0.3em] text-2xl shadow-[0_0_30px_rgba(var(--primary),0.5)] -rotate-2 border-4 border-primary-foreground/20 transition-all hover:scale-105 hover:rotate-0 active:scale-95 pointer-events-auto group relative overflow-hidden"
                 >
                   <span className="relative z-10">
                     {process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? 'In Alpha' : 'Apply Now'}

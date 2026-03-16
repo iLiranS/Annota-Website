@@ -22,18 +22,19 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground">Information We Collect</h2>
             <p>
-              We collect minimal information required to provide our services:
+              We collect minimal information required to provide our services and ensure application stability:
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Account information (email address) for subscription and sync management.</li>
               <li>Subscription status to provide premium features.</li>
+              <li>Stability and performance data (via Sentry) to help us identify and fix bugs. This includes technical information such as your device type, operating system, and crash reports.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-foreground">No Third-Party Tracking</h2>
+            <h2 className="text-2xl font-semibold text-foreground">Stability & Security</h2>
             <p>
-              Annota does not use third-party tracking pixels or sell your data to advertisers. Your workspace is a sanctuary, free from surveillance.
+              Annota does not use third-party tracking pixels or sell your data to advertisers. We use Sentry to monitor application health and performance. This data is used solely for debugging and improving the service, and does not include your encrypted note content.
             </p>
           </section>
 
@@ -57,7 +58,7 @@ export default function PrivacyPage() {
           </section>
 
           <div className="pt-8 border-t text-sm">
-            <p>Last Updated: March 12, 2026</p>
+            <p>Last Updated: March 16, 2026</p>
             <p className="mt-2">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:support@annota.online" className="text-primary hover:underline">support@annota.online</a>.</p>
           </div>
         </div>

@@ -6,7 +6,7 @@ export default function TermsOfServicePage() {
 
         <div className="prose prose-slate dark:prose-invert max-w-none space-y-6 text-muted-foreground">
           <section>
-            <p>Last Updated: March 12, 2026</p>
+            <p>Last Updated: March 16, 2026</p>
           </section>
 
           <section>
@@ -19,7 +19,7 @@ export default function TermsOfServicePage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground">2. Description of Service</h2>
             <p>
-              Annota is a cross-platform, local-first note-taking and annotation application. The service includes local storage of notes, end-to-end encrypted synchronization, and premium features accessible via a paid subscription.
+              Annota is a cross-platform, local-first note-taking and annotation application. The service includes local storage of notes, end-to-end encrypted synchronization, and premium features accessible via a paid subscription. To ensure service reliability, we utilize third-party monitoring tools (such as Sentry) to identify and address technical issues.
             </p>
           </section>
 
@@ -107,7 +107,7 @@ export default function TermsOfServicePage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground">10. Contact Us</h2>
             <p>
-              If you have any questions about these Terms, please contact us at: <a href="mailto:[EMAIL_ADDRESS]" className="text-primary hover:underline">[EMAIL_ADDRESS]</a>
+              If you have any questions about these Terms, please contact us at: <a href="mailto:support@annota.online" className="text-primary hover:underline">support@annota.online</a>
             </p>
           </section>
         </div>
