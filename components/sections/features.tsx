@@ -1,61 +1,74 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { ShieldAlert, FolderTree, FileText, CheckCircle2, History, Lightbulb } from "lucide-react"
+import { LucideIcon, ShieldAlert, FolderTree, FileText, CheckCircle2, History, Lightbulb } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence, useInView } from "framer-motion"
-import Image from "next/image"
 
-const features = [
-  {
-    title: "Ultimate Organization",
-    description: "Deep-nested folders and fluid tagging that adapt to your workflow.",
-    icon: FolderTree,
-    color: "bg-blue-500/10 text-blue-500",
-    image: "/assets/desktop/folders.webp",
-  },
-  {
-    title: "Absolute Privacy",
-    description: "Full offline capability with E2E encryption. Your data, your keys. The server see nothing !",
-    icon: ShieldAlert,
-    color: "bg-emerald-500/10 text-emerald-500",
-    image: "/assets/desktop/privacy.webp",
-  },
+interface Feature {
+  title: string
+  description: string
+  icon: LucideIcon
+  color: string
+  startTime: number // seconds where the feature video segment starts
+  endTime: number // seconds where the feature video segment ends
+}
+
+const features: Feature[] = [
   {
     title: "Powerful Editor",
     description: "Embed images, tables, and LaTeX in a distraction-free environment.",
     icon: FileText,
     color: "bg-purple-500/10 text-purple-500",
-    image: "/assets/desktop/editor.webp",
+    startTime: 0,
+    endTime: 11,
+  },
+  {
+    title: "Ultimate Organization",
+    description: "Deep-nested folders and fluid tagging that adapt to your workflow.",
+    icon: FolderTree,
+    color: "bg-blue-500/10 text-blue-500",
+    startTime: 11.5,
+    endTime: 19.5,
   },
   {
     title: "Integrated Tasks",
     description: "Manage and create to-dos and attach them to folders.",
     icon: CheckCircle2,
     color: "bg-orange-500/10 text-orange-500",
-    image: "/assets/desktop/tasks.webp",
+    startTime: 19.7,
+    endTime: 28.3,
   },
   {
     title: "Total Continuity",
     description: "Instant recovery with version history and safety-first deletion.",
     icon: History,
     color: "bg-pink-500/10 text-pink-500",
-    image: "/assets/desktop/version_history.webp",
+    startTime: 29,
+    endTime: 33,
   },
   {
     title: "Get Insights",
     description: "Get Weekly insights on your notes and tasks with beautiful dashboard.",
     icon: Lightbulb,
     color: "bg-indigo-500/10 text-indigo-500",
-    image: "/assets/desktop/home.webp",
-  }
+    startTime: 33.6,
+    endTime: 38.2,
+  },
+  {
+    title: "Absolute Privacy",
+    description: "Full offline capability with E2E encryption. Your data, your keys. The server see nothing !",
+    icon: ShieldAlert,
+    color: "bg-emerald-500/10 text-emerald-500",
+    startTime: 39,
+    endTime: 42.5,
+  },
 ]
 
 export function FeatureSection() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [progress, setProgress] = useState(0)
-  const autoPlayDuration = 6000 // 6 seconds per feature
 
   const timerRef = useRef<number | null>(null)
   const containerRef = useRef<HTMLElement>(null)
@@ -67,14 +80,17 @@ export function FeatureSection() {
       return;
     }
 
+    const currentFeature = features[activeIndex];
+    const duration = (currentFeature.endTime - currentFeature.startTime) * 1000;
+
     // Use current progress to calculate a virtual start time in the past
     // This allows the animation to resume from exactly where it was.
-    const startTime = Date.now() - (progress / 100 * autoPlayDuration);
+    const startTime = Date.now() - (progress / 100 * duration);
 
     const updateProgress = () => {
       const now = Date.now();
       const elapsed = now - startTime;
-      const newProgress = Math.min((elapsed / autoPlayDuration) * 100, 100);
+      const newProgress = Math.min((elapsed / duration) * 100, 100);
 
       if (newProgress >= 100) {
         setProgress(0);
@@ -118,19 +134,8 @@ export function FeatureSection() {
             onMouseLeave={() => setIsPaused(false)}
             onClick={() => setIsPaused((prev) => !prev)}
           >
-            <div className="relative aspect-3104/1964 w-full overflow-hidden rounded-3xl border border-border bg-muted ring-1 ring-border/50 shadow-2xl">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeIndex}
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 flex items-center justify-center bg-card"
-                >
-                  <FeatureVisual index={activeIndex} isPaused={isPaused} />
-                </motion.div>
-              </AnimatePresence>
+            <div className="relative aspect-[1.6/1] w-full overflow-hidden rounded-3xl ">
+              <FeatureVisual index={activeIndex} isPaused={isPaused} />
             </div>
           </div>
 
@@ -186,7 +191,7 @@ export function FeatureSection() {
 
                       {/* Mobile Visual Content */}
                       <div className="lg:hidden mt-4 pb-2">
-                        <div className="rounded-xl overflow-hidden border border-border bg-muted/50">
+                        <div className="rounded-xl overflow-hidden border border-border">
                           <FeatureVisual index={index} isPaused={isPaused} isMobile />
                         </div>
                       </div>
@@ -204,24 +209,73 @@ export function FeatureSection() {
 
 function FeatureVisual({ index, isPaused, isMobile = false }: { index: number; isPaused: boolean; isMobile?: boolean }) {
   const feature = features[index]
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isSeeking, setIsSeeking] = useState(false)
+
+  // video placeholder path - change this to your actual video file
+  const videoSrc = "/assets/videos/features.mp4"
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const performSeek = () => {
+      setIsSeeking(true)
+      video.currentTime = feature.startTime
+
+      // We wait a tiny bit for the seek to complete before fading back in
+      // 'seeking' and 'seeked' events are better for this
+      const onSeeked = () => {
+        setIsSeeking(false)
+        if (!isPaused) {
+          video.play().catch(() => { })
+        }
+        video.removeEventListener("seeked", onSeeked)
+      }
+
+      video.addEventListener("seeked", onSeeked)
+    }
+
+    if (video.readyState >= 1) {
+      performSeek()
+    } else {
+      video.addEventListener("loadedmetadata", performSeek, { once: true })
+    }
+  }, [index, feature.startTime])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    if (isPaused) {
+      video.pause()
+    } else if (!isSeeking) {
+      video.play().catch(() => { })
+    }
+  }, [isPaused, isSeeking])
 
   return (
     <div className={cn(
       "flex flex-col items-center text-center w-full h-full relative group/visual",
       isMobile ? "max-w-none p-0" : "max-w-none p-0"
     )}>
-      {/* Container for Image */}
+      {/* Container for Video */}
       <div className={cn(
-        "w-full bg-muted border-border flex flex-col items-center justify-center relative overflow-hidden",
-        isMobile ? "aspect-3104/1964 border-none" : "h-full border-none"
+        "w-full border-border flex flex-col items-center justify-center relative overflow-hidden",
+        isMobile ? "aspect-[1.6/1] border-none" : "h-full border-none"
       )}>
-        <Image
-          src={feature.image}
-          alt={feature.title}
-          fill
-          loading="lazy"
-          className="object-cover object-top"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+        <motion.video
+          ref={videoRef}
+          src={videoSrc}
+          className="w-full h-full object-contain"
+          animate={{
+            opacity: isSeeking ? 0 : 1,
+            scale: isSeeking ? 0.98 : 1
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          muted
+          playsInline
+          loop
         />
 
         {/* Overlay gradient for depth */}

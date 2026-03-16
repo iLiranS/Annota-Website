@@ -47,15 +47,54 @@ export function PricingSection() {
 
         <div className="relative">
           {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' && (
-            <div className="absolute backdrop-blur-sm inset-0 z-50 w-full h-full bg-background/30 flex items-center justify-center">
-              <a 
-                href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary/90 text-primary-foreground px-8 py-3 rounded-full font-black uppercase tracking-[0.4em] text-xl shadow-2xl -rotate-3 border-4 border-primary-foreground/20 transition-transform hover:scale-105 active:scale-95 pointer-events-auto"
+            <div className="absolute backdrop-blur-sm inset-0 z-50 w-full h-full bg-background/40 flex flex-col items-center justify-center gap-6 text-center px-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.5, type: "spring" }}
+                className="flex flex-col items-center gap-6"
               >
-                {process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? 'In Alpha' : 'Apply Now'}
-              </a>
+                <a
+                  href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-primary text-primary-foreground px-10 py-4 rounded-full font-black uppercase tracking-[0.3em] text-2xl shadow-[0_0_30px_rgba(var(--primary),0.5)] -rotate-2 border-4 border-primary-foreground/20 transition-all hover:scale-105 hover:-rotate-0 active:scale-95 pointer-events-auto group relative overflow-hidden"
+                >
+                  <span className="relative z-10">
+                    {process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? 'In Alpha' : 'Apply Now'}
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
+                    animate={{
+                      x: ["-100%", "100%"],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 1,
+                      ease: "easeInOut",
+                    }}
+                  />
+                </a>
+
+                {process.env.NEXT_PUBLIC_ALPHA_STARTED !== 'true' && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex flex-col items-center gap-2"
+                  >
+                    <p className="text-foreground font-black text-xl uppercase lg:text-3xl tracking-tight italic">
+                      AND Get <span className="text-primary underline decoration-wavy decoration-2">Lifetime Discount</span> later on!
+                    </p>
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Sparkles key={i} className="h-4 w-4 text-primary animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
             </div>
           )}
           <motion.div
