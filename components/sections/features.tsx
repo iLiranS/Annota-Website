@@ -17,7 +17,7 @@ interface Feature {
 const features: Feature[] = [
   {
     title: "Powerful Editor",
-    description: "Embed images, tables, and LaTeX in a distraction-free environment.",
+    description: "Embed images, PDFs, tables, and LaTeX in a distraction-free environment.",
     icon: FileText,
     color: "bg-purple-500/10 text-purple-500",
     startTime: 0,

@@ -22,25 +22,27 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground">Information We Collect</h2>
             <p>
-              We collect minimal information required to provide our services and ensure application stability:
+              We collect minimal information required to provide our services:
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Account information (email address) for subscription and sync management.</li>
+              <li>Account profile (name, email address, avatar) purely for authentication and account management.</li>
               <li>Subscription status to provide premium features.</li>
-              <li>Stability and performance data (via Sentry) to help us identify and fix bugs. This includes technical information such as your device type, operating system, and crash reports.</li>
+              <li>Absolutely zero data is collected for users who choose to use Annota in "Offline (Guest)" mode.</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-foreground">Stability & Security</h2>
             <p>
-              Annota does not use third-party tracking pixels or sell your data to advertisers. We use Sentry to monitor application health and performance. This data is used solely for debugging and improving the service, and does not include your encrypted note content.
+              Annota does not use third-party tracking pixels or sell your data to advertisers. We do not use any third-party crash reporting tools that collect telemetry. All technical issues are addressed solely through local logs and direct user reports if you choose to provide them.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-foreground">Payment Processing</h2>
-            <p>We use trusted third-party payment processors (Revenue Cat) to handle transactions. We do not store or process your payment details directly.</p>
+            <p>
+              We use RevenueCat to manage subscriptions and handle transactions. RevenueCat collects certain information such as your country, device platform, and last-seen activity timestamps to facilitate subscription management and service usage. We do not store or process your payment details directly.
+            </p>
           </section>
           <section>
             <h2 className="text-2xl font-semibold text-foreground">Data & Account Deletion</h2>
@@ -58,7 +60,7 @@ export default function PrivacyPage() {
           </section>
 
           <div className="pt-8 border-t text-sm">
-            <p>Last Updated: March 16, 2026</p>
+            <p>Last Updated: March 24, 2026</p>
             <p className="mt-2">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:support@annota.online" className="text-primary hover:underline">support@annota.online</a>.</p>
           </div>
         </div>

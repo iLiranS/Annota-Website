@@ -82,7 +82,7 @@ export function Hero() {
           {/* Header & Badges Row - Better Integration */}
           <motion.div variants={itemVariants} className="flex flex-col items-center gap-3 sm:gap-4 mb-4 sm:mb-6 lg:mb-8">
             <motion.h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] font-[Inter] font-black tracking-tighter text-foreground">
-              Your digital mind <br /> <span className="text-primary italic">fully secured</span>
+              Your digital mind <br /> <span className="text-primary italic">Simple & Secure</span>
             </motion.h1>
 
             <motion.div className="flex items-center justify-center gap-1 sm:gap-4 p-1 rounded-full sm:rounded-2xl bg-muted/30  border border-border/50 w-full sm:w-auto overflow-hidden">
@@ -113,12 +113,12 @@ export function Hero() {
           {/* Download Buttons - Professional Grid */}
           <div className="relative w-full max-w-4xl px-2 sm:px-4">
             {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' && (
-              <div className="absolute backdrop-blur-xs inset-0 z-50 flex items-center justify-center">
-                <a 
+              <div className="absolute backdrop-blur-[2px] inset-0 z-50 flex items-center justify-center">
+                <a
                   href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-primary/90 text-primary-foreground px-6 py-2 rounded-full font-black uppercase tracking-[0.3em] text-sm shadow-2xl -rotate-2 border-2 border-primary-foreground/20 transition-transform hover:scale-105 active:scale-95 pointer-events-auto"
+                  className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-black uppercase tracking-[0.3em] text-sm shadow-2xl -rotate-2 border-2 border-primary-foreground/20 transition-transform hover:scale-105 active:scale-95 pointer-events-auto"
                 >
                   {process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? 'In Alpha' : 'Apply Now'}
                 </a>
@@ -180,7 +180,7 @@ export function Hero() {
             {/* Desktop Preview - Clean, borderless */}
             <motion.div
               style={{ rotateX: desktopRotateX }}
-              className="relative w-full lg:w-[85%] aspect-16/10 overflow-hidden"
+              className="relative w-full lg:w-[85%]  aspect-16/10 overflow-hidden"
             >
               <Image
                 src={mounted && theme.resolvedTheme === 'dark' ? "/assets/desktop/preview_dark.webp" : "/assets/desktop/preview_light.webp"}

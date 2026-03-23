@@ -11,24 +11,21 @@ import { motion } from "framer-motion"
 const faqs = [
   {
     question: "What is Annota?",
-    answer: "Annota is a Offline and local-first note taking app designed to help you capture, organize, and interact with your content seamlessly. At its core, it is built to speed up your workflow and keep your thoughts securely organized in one place, without getting in your way."
+    answer: "Annota is a Offline and local-first note taking app with E2E encryption sync capabilities. It is designed to help you capture, organize, and interact with your content seamlessly. At its core, it is built to speed up your workflow and keep your thoughts securely organized in one place, without getting in your way."
   },
   {
     question: "What platforms does Annota support?",
-    answer: "Annota is designed to fit right into your existing workflow. We currently support iOS and MacOS, soon to be on Android and Windows as well"
+    answer: "We currently support iOS and MacOS, soon to be on Android and Windows as well."
   },
   {
     question: "How is my data stored and secured?",
-    answer: "our privacy is our absolute priority. All your data-including text, images, and annotations is stored using Supabase with true End-to-End (E2E) encryption. We utilize a zero-knowledge architecture, meaning your encryption keys remain strictly on your device. We cannot see your data, and even Supabase cannot access or read it. You are the only one who holds the key to your content. You can always export your notes from your device to different formats as well"
+    answer: "If you choose to sync your data, your privacy is our absolute priority. All your data is stored using Supabase with true End-to-End (E2E) encryption. We utilize a zero-knowledge architecture, meaning your encryption keys remain strictly on your device. We cannot see your data, and even Supabase cannot access or read it. You are the only one who holds the key to your content. You can always export your notes from your device to different formats as well"
   },
   {
     question: "What happens if I cancel my subscription?",
     answer: "If you cancel, you'll still have full access to your local notes. Your data remains on your device. You'll simply lose access to cloud synchronization and premium storage limits once your billing cycle ends. * Exceeding server storage will be deleted if you stay unsubscribed for more than 90 days"
   },
-  {
-    question: "Who is behind Annota?",
-    answer: "Annota is developed by Liran, a solo developer with a passion for building tools that help people be more productive. Liran is a software engineer with experience in mobile and web development. He is also a user of note-taking apps and understands the importance of privacy and security."
-  }
+
 ]
 
 export function FaqSection() {

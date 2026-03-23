@@ -24,7 +24,6 @@ export function Footer() {
               <Link href="/#features" className="text-sm text-muted-foreground hover:text-foreground">Features</Link>
               <Link href="/#pricing" className="text-sm text-muted-foreground hover:text-foreground">Pricing</Link>
               <Link href="/#faq" className="text-sm text-muted-foreground hover:text-foreground">FAQ</Link>
-              <Link href="/roadmap" className="text-sm text-muted-foreground hover:text-foreground">Roadmap</Link>
               <Link href="/#download" className="text-sm text-muted-foreground hover:text-foreground">Download</Link>
             </div>
             <div className="flex flex-col gap-3">
