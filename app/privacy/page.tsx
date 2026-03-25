@@ -46,10 +46,14 @@ export default function PrivacyPage() {
           </section>
           <section>
             <h2 className="text-2xl font-semibold text-foreground">Data & Account Deletion</h2>
-            <p>
-              Since Annota will be available on mobile platforms, keep in mind that both Apple and Google strictly require an explicit explanation of how users can delete their accounts and data.
-              You can permanently delete your account and all associated data at any time through the app settings. Upon deletion, your data is immediately removed from our active servers.
-            </p>
+            <div className="space-y-4">
+              <p>
+                You can permanently delete your account and all associated data at any time through the app settings. Upon deletion, your data is immediately removed from our active servers.
+              </p>
+              <p>
+                <strong>Inactive Non-Pro Accounts:</strong> For users who do not have an active Pro subscription, cloud-synced data is subject to deletion if the account remains inactive for more than 90 consecutive days. This allows us to keep our server infrastructure clean and efficient. Data stored locally on your devices is never deleted by Annota.
+              </p>
+            </div>
           </section>
 
           <section>

@@ -6,7 +6,7 @@ export default function TermsOfServicePage() {
 
         <div className="prose prose-slate dark:prose-invert max-w-none space-y-6 text-muted-foreground">
           <section>
-            <p>Last Updated: March 19, 2026</p>
+            <p>Last Updated: March 24, 2026</p>
           </section>
 
           <section>
@@ -59,6 +59,10 @@ export default function TermsOfServicePage() {
               <div>
                 <h3 className="text-lg font-medium text-foreground">Data Loss</h3>
                 <p>Because you are the sole holder of your encryption keys, Annota cannot recover lost data if you lose access to your account credentials or keys.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-foreground">Data Retention (Inactive Accounts)</h3>
+                <p>For non-pro (Free) users, cloud-synced data is subject to deletion if the account remains inactive for more than 90 consecutive days. We reserve the right to delete all encrypted data stored on our servers for such inactive accounts to optimize resources. This policy does not apply to active Pro subscribers or any data stored locally on your devices.</p>
               </div>
             </div>
           </section>

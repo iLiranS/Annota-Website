@@ -23,7 +23,11 @@ const faqs = [
   },
   {
     question: "What happens if I cancel my subscription?",
-    answer: "If you cancel, you'll still have full access to your local notes. Your data remains on your device. You'll simply lose access to cloud synchronization and premium storage limits once your billing cycle ends. * Exceeding server storage will be deleted if you stay unsubscribed for more than 90 days"
+    answer: "If you cancel, you'll still have full access to your local notes. Your data remains on your device. You'll simply lose access to cloud synchronization and premium storage limits once your billing cycle ends."
+  },
+  {
+    question: "How long is my data stored if I'm inactive?",
+    answer: "For non-pro (Free) users, cloud-synced data is deleted if the account remains inactive for more than 90 consecutive days. This help us maintain a fast and efficient service for everyone. Note that this only applies to data on our servers; your local notes on your device are never deleted by us."
   },
 
 ]
