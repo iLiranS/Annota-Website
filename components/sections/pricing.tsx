@@ -54,28 +54,44 @@ export function PricingSection() {
                 transition={{ duration: 0.5, type: "spring" }}
                 className="flex flex-col items-center gap-6"
               >
-                <a
-                  href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-primary text-primary-foreground px-10 py-4 rounded-full font-black uppercase tracking-[0.3em] text-2xl shadow-[0_0_30px_rgba(var(--primary),0.5)] -rotate-2 border-4 border-primary-foreground/20 transition-all hover:scale-105 hover:rotate-0 active:scale-95 pointer-events-auto group relative overflow-hidden"
-                >
-                  <span className="relative z-10">
-                    {process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? 'In Alpha' : 'Apply Now'}
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
-                    animate={{
-                      x: ["-100%", "100%"],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatDelay: 1,
-                      ease: "easeInOut",
-                    }}
-                  />
-                </a>
+                {process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? (
+                  <div className="bg-primary text-primary-foreground px-10 py-4 rounded-full font-black uppercase tracking-[0.3em] text-2xl shadow-[0_0_30px_rgba(var(--primary),0.5)] -rotate-2 border-4 border-primary-foreground/20 transition-all cursor-default group relative overflow-hidden">
+                    <span className="relative z-10">In Alpha</span>
+                    <motion.div
+                      className="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
+                      animate={{
+                        x: ["-100%", "100%"],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 1,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <a
+                    href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-primary text-primary-foreground px-10 py-4 rounded-full font-black uppercase tracking-[0.3em] text-2xl shadow-[0_0_30px_rgba(var(--primary),0.5)] -rotate-2 border-4 border-primary-foreground/20 transition-all hover:scale-105 hover:rotate-0 active:scale-95 pointer-events-auto group relative overflow-hidden"
+                  >
+                    <span className="relative z-10">Apply Now</span>
+                    <motion.div
+                      className="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
+                      animate={{
+                        x: ["-100%", "100%"],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 1,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </a>
+                )}
 
                 {process.env.NEXT_PUBLIC_ALPHA_STARTED !== 'true' && (
                   <motion.div

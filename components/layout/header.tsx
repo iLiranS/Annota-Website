@@ -60,29 +60,48 @@ export function Header() {
           >
             <Button
               className="relative overflow-hidden gap-2 bg-primary text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-500 border border-primary/20 group/button"
-              asChild={process.env.NEXT_PUBLIC_APP_ALPHA === 'true'}
+              asChild={process.env.NEXT_PUBLIC_APP_ALPHA === 'true' && process.env.NEXT_PUBLIC_ALPHA_STARTED !== 'true'}
             >
               {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? (
-                <a
-                  href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative z-10 font-bold uppercase tracking-widest text-[10px] transition-all group-hover/button:tracking-[0.15em] flex items-center justify-center gap-2"
-                >
-                  <p className="text-white">{process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? 'In Alpha' : 'Apply Now'}</p>
-                  <motion.div
-                    className="absolute  inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
-                    animate={{
-                      x: ["-100%", "100%"],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatDelay: 1.5,
-                      ease: "easeInOut",
-                    }}
-                  />
-                </a>
+                (() => {
+                  const content = (
+                    <>
+                      <p className="text-white">{process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? 'In Alpha' : 'Apply Now'}</p>
+                      <motion.div
+                        className="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
+                        animate={{
+                          x: ["-100%", "100%"],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          repeatDelay: 1.5,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    </>
+                  );
+                  const className = "relative z-10 font-bold uppercase tracking-widest text-[10px] transition-all group-hover/button:tracking-[0.15em] flex items-center justify-center gap-2";
+                  
+                  if (process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true') {
+                    return (
+                      <div className={className}>
+                        {content}
+                      </div>
+                    );
+                  }
+                  
+                  return (
+                    <a
+                      href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={className}
+                    >
+                      {content}
+                    </a>
+                  );
+                })()
               ) : (
                 <div className="relative z-10 text-white flex items-center gap-2">
                   <span className="flex items-center gap-2 transition-transform duration-300 group-hover/button:translate-x-0.5">

@@ -114,14 +114,20 @@ export function Hero() {
           <div className="relative w-full max-w-4xl px-2 sm:px-4">
             {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' && (
               <div className="absolute backdrop-blur-[2px] inset-0 z-50 flex items-center justify-center">
-                <a
-                  href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-black uppercase tracking-[0.3em] text-sm shadow-2xl -rotate-2 border-2 border-primary-foreground/20 transition-transform hover:scale-105 active:scale-95 pointer-events-auto"
-                >
-                  {process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? 'In Alpha' : 'Apply Now'}
-                </a>
+                {process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? (
+                  <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-black uppercase tracking-[0.3em] text-sm shadow-2xl -rotate-2 border-2 border-primary-foreground/20 transition-transform cursor-default">
+                    In Alpha
+                  </div>
+                ) : (
+                  <a
+                    href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-black uppercase tracking-[0.3em] text-sm shadow-2xl -rotate-2 border-2 border-primary-foreground/20 transition-transform hover:scale-105 active:scale-95 pointer-events-auto"
+                  >
+                    Apply Now
+                  </a>
+                )}
               </div>
             )}
             <motion.div
