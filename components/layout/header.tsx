@@ -7,10 +7,14 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 import { getPlatform, type Platform } from "@/utils/getPlatform"
-import { FaApple, FaWindows, FaLinux, FaAndroid } from "react-icons/fa"
+import { FaApple, FaWindows, FaLinux, FaAndroid, FaGithub, FaStar } from "react-icons/fa"
 import { motion } from "framer-motion"
 
-export function Header() {
+interface HeaderProps {
+  stars: number | null
+}
+
+export function Header({ stars }: HeaderProps) {
   const [platform, setPlatform] = useState<Platform | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -52,7 +56,21 @@ export function Header() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
+          {stars !== null && (
+            <Link
+              href="https://github.com/ilirans/annota"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-muted/50 hover:bg-muted transition-colors border border-border/50 group"
+            >
+              <FaGithub className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <div className="flex items-center gap-0.5 sm:gap-1">
+                <FaStar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-yellow-500 fill-yellow-500 group-hover:scale-110 transition-transform" />
+                <span className="text-xs sm:text-sm font-semibold tabular-nums">{stars.toLocaleString()}</span>
+              </div>
+            </Link>
+          )}
           <ThemeToggle />
           <motion.div
             whileHover={{ scale: 1.05 }}

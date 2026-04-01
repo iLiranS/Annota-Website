@@ -4,6 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { getGithubStars } from "@/lib/github"
 import { cn } from "@/lib/utils";
 import { Metadata } from 'next';
 import { Analytics } from "@vercel/analytics/next"
@@ -25,11 +26,12 @@ const ralewayFont = Raleway({
 
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const stars = await getGithubStars();
   return (
     <html
       lang="en"
@@ -39,7 +41,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
-            <Header />
+            <Header stars={stars} />
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
