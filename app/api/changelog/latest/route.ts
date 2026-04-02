@@ -5,12 +5,12 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const versions = Object.keys(changelogData);
+  
   if (versions.length === 0) {
     return NextResponse.json(null, {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       },
     });
   }
@@ -28,26 +28,29 @@ export async function GET() {
   })[0];
 
   const latestEntry = (changelogData as any)[latestVersion];
-
-  return NextResponse.json({
+  const data = {
     version: latestVersion,
     ...latestEntry
-  }, {
+  };
+
+  return NextResponse.json(data, {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     },
   });
 }
 
+// The WebKit-Safe Preflight Handler
 export async function OPTIONS() {
-  return new Response(null, {
-    status: 204,
+  return new NextResponse(null, {
+    status: 200, // Changed from 204 to 200 for WebKit compatibility
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      // Explicitly state the headers instead of using '*'
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, Accept, Origin', 
     },
   });
 }
+
