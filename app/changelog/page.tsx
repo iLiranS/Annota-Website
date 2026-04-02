@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { Badge } from "@/components/ui/badge"
 import { CalendarDays, CheckCircle2, Monitor, Rocket, Smartphone } from "lucide-react"
-import changelogData from "@/public/changelog.json"
+import { changelogData } from "@/lib/changelog-data"
 import {
   Accordion,
   AccordionContent,
