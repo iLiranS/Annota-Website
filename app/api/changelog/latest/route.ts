@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { changelogData } from '@/lib/changelog-data';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const versions = Object.keys(changelogData);
   if (versions.length === 0) {
@@ -19,8 +21,8 @@ export async function GET() {
     const aParts = a.split('.').map(Number);
     const bParts = b.split('.').map(Number);
     for (let i = 0; i < 3; i++) {
-        if (aParts[i] > bParts[i]) return -1;
-        if (aParts[i] < bParts[i]) return 1;
+      if (aParts[i] > bParts[i]) return -1;
+      if (aParts[i] < bParts[i]) return 1;
     }
     return 0;
   })[0];
