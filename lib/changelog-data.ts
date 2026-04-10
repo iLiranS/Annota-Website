@@ -56,5 +56,28 @@ export const changelogData = {
         "Various UI fixes across editor, tables, and menus"
       ]
     }
+  },
+  "0.1.2": {
+    "date": "2026-04-10",
+    "title": "Encryption Update",
+    "common": {
+      "features": [
+        "⚠️ Breaking: Encryption format updated to reduce storage overhead. If a note, folder, or task fails to load on other device, make a small edit to trigger re-encrypt in the new format"
+      ],
+      "fixes": [
+        "Minor editor UI fixes",
+        "Improved PDF export to match editor settings"
+      ]
+    },
+    "desktop": {
+      "features": [
+        "Link right-click context menu"
+      ],
+      "fixes": []
+    },
+    "mobile": {
+      "features": [],
+      "fixes": []
+    }
   }
 };
