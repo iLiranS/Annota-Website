@@ -14,7 +14,7 @@ export function Footer() {
               <span className="text-lg font-semibold tracking-tight">Annota</span>
             </Link>
             <p className="text-center text-sm text-muted-foreground md:text-left">
-              The ultimate privacy-focused workspace for notes and tasks.
+              The ultimate privacy-focused workspace for your digital mind.
             </p>
           </div>
 

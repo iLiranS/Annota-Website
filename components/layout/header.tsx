@@ -43,7 +43,7 @@ export function Header({ stars }: HeaderProps) {
             <span className="text-xl font-bold tracking-tight">Annota</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold">
             <Link href="/#features" className="text-muted-foreground transition-colors hover:text-foreground">
               Features
             </Link>
@@ -100,7 +100,7 @@ export function Header({ stars }: HeaderProps) {
                     </>
                   );
                   const className = "relative z-10 font-bold uppercase tracking-widest text-[10px] transition-all group-hover/button:tracking-[0.15em] flex items-center justify-center gap-2";
-                  
+
                   if (process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true') {
                     return (
                       <div className={className}>
@@ -108,7 +108,7 @@ export function Header({ stars }: HeaderProps) {
                       </div>
                     );
                   }
-                  
+
                   return (
                     <a
                       href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}

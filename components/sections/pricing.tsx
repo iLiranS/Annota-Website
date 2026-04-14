@@ -251,7 +251,7 @@ export function PricingSection() {
                   <div className="flex items-center gap-1 h-5 uppercase tracking-widest text-primary font-bold text-[10px]">
                     <span className="relative top-0.5">*</span>
                     <span className="text-muted-foreground opacity-60">
-                      100 notes, 250 tasks, 20 folders, 20 tags
+                      100 notes, 20 folders, 20 tags
                     </span>
                   </div>
                 </CardFooter>
