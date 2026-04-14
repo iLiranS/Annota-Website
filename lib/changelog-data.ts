@@ -79,5 +79,36 @@ export const changelogData = {
       "features": [],
       "fixes": []
     }
+  },
+  "0.1.3": {
+    "date": "2026-04-14",
+    "title": "Major Refactor & Desktop AI Integration",
+    "common": {
+      "features": [
+        "Removed Tasks feature completely to focus on the core note-taking experience"
+      ],
+      "fixes": [
+        "Minor editor bug fixes"
+      ]
+    },
+    "desktop": {
+      "features": [
+        "Major architecture refactor: Combined dual sidebars into a single sleek navigation panel",
+        "Integrated AI chatbot with support for local Ollama and Bring Your Own Key (BYOK)",
+        "App now automatically reopens the last active note on startup",
+        "Removed Home screen to streamline the user experience"
+      ],
+      "fixes": [
+        "Various bug fixes and stability improvements"
+      ]
+    },
+    "mobile": {
+      "features": [
+        "Removed Home screen: app now defaults to 'All Notes' view"
+      ],
+      "fixes": [
+        "Minor UI enhancements and polished transitions"
+      ]
+    }
   }
 };
