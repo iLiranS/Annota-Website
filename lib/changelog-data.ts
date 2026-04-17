@@ -110,5 +110,29 @@ export const changelogData = {
         "Minor UI enhancements and polished transitions"
       ]
     }
+  },
+  "0.1.4": {
+    "date": "2026-04-17",
+    "title": "Search & Navigation Improvements",
+    "common": {
+      "features": [
+        "Better search behavior for notes"
+      ],
+      "fixes": []
+    },
+    "desktop": {
+      "features": [
+        "Preserved note context when navigating between folders"
+      ],
+      "fixes": [
+        "Fixed minor UI issues"
+      ]
+    },
+    "mobile": {
+      "features": [
+        "Better and more reliable navigation system"
+      ],
+      "fixes": []
+    }
   }
 };
