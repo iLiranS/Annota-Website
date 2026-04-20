@@ -134,5 +134,36 @@ export const changelogData = {
       ],
       "fixes": []
     }
+  },
+  "0.1.5": {
+    "date": "2026-04-20",
+    "title": "Organization & AI Enhancements",
+    "common": {
+      "features": [
+        "Improved blockquotes rendering and behavior",
+        "Added optional note counts for folders",
+        "Bulk note management with move and delete options"
+      ],
+      "fixes": [
+        "Minor editor UI improvements"
+      ]
+    },
+    "desktop": {
+      "features": [
+        "AI chat now supports text selections as context",
+        "Support for newer AI models",
+        "Drag and drop a note into a folder",
+        "IDE-style Tab indentation in the editor"
+      ],
+      "fixes": []
+    },
+    "mobile": {
+      "features": [
+        "Cleaned up UI by removing folder arrow buttons"
+      ],
+      "fixes": [
+        "Fixed 'Search in note' functionality"
+      ]
+    }
   }
 };
