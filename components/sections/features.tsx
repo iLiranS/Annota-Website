@@ -51,6 +51,7 @@ export function FeatureSection() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [shouldPreload, setShouldPreload] = useState(false)
 
   const timerRef = useRef<number | null>(null)
   const containerRef = useRef<HTMLElement>(null)
@@ -88,6 +89,15 @@ export function FeatureSection() {
     };
   }, [activeIndex, isPaused, isInView])
 
+  useEffect(() => {
+    // Only preload after a delay to ensure it doesn't block critical resources
+    // The delay ensures we don't interfere with the initial website launch.
+    const timer = setTimeout(() => {
+      setShouldPreload(true)
+    }, 2000)
+    return () => clearTimeout(timer)
+  }, [])
+
   const handleSelect = (index: number) => {
     if (index === activeIndex) {
       setIsPaused((prev) => !prev)
@@ -111,11 +121,9 @@ export function FeatureSection() {
           {/* Main Visual Area (Desktop only) */}
           <div
             className="hidden lg:block flex-1 min-w-0 relative group h-full cursor-pointer"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
             onClick={() => setIsPaused((prev) => !prev)}
           >
-            <div className="relative aspect-[1.6/1] w-full overflow-hidden rounded-3xl ">
+            <div className="relative aspect-16/10 w-full ">
               <FeatureVisual index={activeIndex} isPaused={isPaused} />
             </div>
           </div>
@@ -172,7 +180,7 @@ export function FeatureSection() {
 
                       {/* Mobile Visual Content */}
                       <div className="lg:hidden mt-4 pb-2">
-                        <div className="rounded-xl overflow-hidden border border-border">
+                        <div className="relative rounded-xl overflow-hidden">
                           <FeatureVisual index={index} isPaused={isPaused} isMobile />
                         </div>
                       </div>
@@ -184,6 +192,23 @@ export function FeatureSection() {
           </div>
         </div>
       </div>
+
+      {/* Invisible Preloading Area */}
+      {shouldPreload && (
+        <div className="absolute -z-50 opacity-0 pointer-events-none w-0 h-0 overflow-hidden" aria-hidden="true">
+          {features.map((feature, i) => (
+            <div key={`preload-${i}`} className="relative w-[1000px] aspect-[1.6/1]">
+              <Image
+                src={feature.image}
+                alt=""
+                fill
+                loading="eager"
+                unoptimized
+              />
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   )
 }
@@ -191,36 +216,45 @@ export function FeatureSection() {
 function FeatureVisual({ index, isPaused, isMobile = false }: { index: number; isPaused: boolean; isMobile?: boolean }) {
   const feature = features[index]
 
+  if (isMobile) {
+    return (
+      <div className="relative w-full aspect-[1.6/1] overflow-hidden rounded-xl">
+        <Image
+          src={feature.image}
+          alt={feature.title}
+          fill
+          className="object-cover rounded-xl"
+          priority
+          unoptimized
+        />
+      </div>
+    )
+  }
+
   return (
     <div className={cn(
       "flex flex-col items-center text-center w-full h-full relative group/visual transition-all duration-700",
-      isMobile ? "max-w-none p-0" : "max-w-none p-0"
     )}>
       {/* Container for Images with AnimatePresence for cross-fade */}
-      <div className={cn(
-        "w-full flex flex-col items-center justify-center relative overflow-hidden",
-        isMobile ? "aspect-[1.6/1]" : "h-full"
-      )}>
+      <div className="w-full h-full relative overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             className="absolute inset-0 w-full h-full"
           >
             <Image
               src={feature.image}
               alt={feature.title}
               fill
-              className="w-full h-full object-cover rounded-3xl"
+              className="w-full h-full rounded-lg"
+              unoptimized
             />
           </motion.div>
         </AnimatePresence>
-
-        {/* Overlay gradient for depth */}
-        <div className="absolute inset-0 bg-linear-to-t from-background/40 to-transparent pointer-events-none rounded-3xl" />
 
         <AnimatePresence mode="wait">
           {isPaused && (
@@ -231,17 +265,17 @@ function FeatureVisual({ index, isPaused, isMobile = false }: { index: number; i
               exit={{ opacity: 0, scale: 0.8 }}
               className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
             >
-              <div className="h-20 w-20 rounded-full bg-background/40 backdrop-blur-sm flex items-center justify-center border border-primary/30 shadow-2xl">
+              <div className="h-20 w-20 rounded-full bg-background/20 backdrop-blur-sm flex items-center justify-center">
                 <div className="flex gap-2">
-                  <div className="h-8 w-2.5 bg-primary rounded-full shadow-[0_0_15px_rgba(var(--primary),0.5)]" />
-                  <div className="h-8 w-2.5 bg-primary rounded-full shadow-[0_0_15px_rgba(var(--primary),0.5)]" />
+                  <div className="h-8 w-2.5 bg-primary rounded-full" />
+                  <div className="h-8 w-2.5 bg-primary rounded-full" />
                 </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        <div className="absolute bottom-6 left-6 z-10 bg-background/60 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/10 shadow-xl opacity-0 group-hover/visual:opacity-100 transition-opacity duration-300">
+        <div className="absolute bottom-6 left-6 z-10 bg-background/40 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/5 opacity-0 group-hover/visual:opacity-100 transition-opacity duration-300">
           <p className="text-[10px] font-black uppercase tracking-widest text-primary flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -259,10 +293,7 @@ function FeatureVisual({ index, isPaused, isMobile = false }: { index: number; i
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className={cn(
-              "absolute z-30 bg-background/80 backdrop-blur-sm border border-primary/30 px-4 py-1.5 rounded-full flex items-center gap-2 shadow-lg",
-              isMobile ? "bottom-4 right-4" : "top-8 right-8"
-            )}
+            className="absolute z-30 bg-background/60 backdrop-blur-md px-4 py-1.5 rounded-full flex items-center gap-2 top-8 right-8"
           >
             <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
             <span className="text-[10px] font-black tracking-widest uppercase text-primary">Autoplay Paused</span>

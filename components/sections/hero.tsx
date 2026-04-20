@@ -85,7 +85,7 @@ export function Hero() {
               Your digital mind <br /> <span className="text-primary italic">Simple & Secure</span>
             </motion.h1>
 
-            <motion.div className="flex items-center justify-center gap-1 sm:gap-4 p-1 rounded-full sm:rounded-2xl bg-muted/30  border border-border/50 w-full sm:w-auto overflow-hidden">
+            <motion.div className="flex items-center justify-center p-1 rounded-full sm:rounded-2xl bg-muted/30  border border-border/50 w-full sm:w-auto overflow-hidden">
               {/* Trust & Community Badges grouped together */}
               <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 border-r border-border/50 whitespace-nowrap">
                 <Shield size={14} className="text-primary" />
@@ -99,13 +99,10 @@ export function Hero() {
                 href="https://discord.gg/dG5nNJPDAh"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 group transition-colors hover:text-primary whitespace-nowrap"
+                className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 group transition-colors hover:text-primary whitespace-nowrap"
               >
-                <FaDiscord size={16} className="text-[#5865F2]" />
-                <div className="flex flex-col items-start leading-tight">
-                  <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-tighter">Discord</span>
-
-                </div>
+                <FaDiscord size={14} className="text-primary group-hover:text-primary transition-colors" />
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-foreground/70 group-hover:text-primary transition-colors">Discord</span>
               </a>
             </motion.div>
           </motion.div>
@@ -194,6 +191,7 @@ export function Hero() {
                 fill
                 className="object-cover"
                 priority
+                unoptimized
               />
 
             </motion.div>
@@ -201,7 +199,7 @@ export function Hero() {
             {/* Mobile Preview Frame - Overlapping Desktop */}
             <motion.div
               style={{ x: mobileTranslateX, y: mobileTranslateY }}
-              className="absolute right-4 bottom-[-5%] sm:bottom-[-10%] w-28 sm:w-[28%] lg:w-[22%] aspect-9/19.5 rounded-[2rem] sm:rounded-[3rem] border-2 sm:border-8 border-muted/40 overflow-hidden shadow-[0_50px_80px_-15px_rgba(0,0,0,0.4)] z-30 ring-1 ring-white/10"
+              className="absolute right-4 bottom-[-5%] sm:bottom-[-10%] w-28 sm:w-[28%] lg:w-[22%] aspect-9/19.5 rounded-[2rem] sm:rounded-[3rem] border-2 sm:border-8 border-muted/40 overflow-hidden shadow-[0_50px_80px_-15px_rgba(0,0,0,0.4)] z-30 ring-1 ring-border"
             >
               <Image
                 src={mounted && theme.resolvedTheme === 'dark' ? "/assets/mobile/preview_dark.webp" : "/assets/mobile/preview_light.webp"}
@@ -209,6 +207,7 @@ export function Hero() {
                 fill
                 className="object-cover"
                 priority
+                unoptimized
               />
             </motion.div>
 

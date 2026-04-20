@@ -19,10 +19,6 @@ const interFont = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 })
-const ralewayFont = Raleway({
-  subsets: ["latin"],
-  variable: "--font-raleway",
-})
 
 
 
@@ -36,7 +32,7 @@ export default async function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased scroll-smooth", interFont.className)}
+      className={cn("antialiased scroll-smooth", interFont.variable, interFont.className)}
     >
       <body>
         <ThemeProvider>
