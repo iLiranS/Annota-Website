@@ -165,5 +165,38 @@ export const changelogData = {
         "Fixed 'Search in note' functionality"
       ]
     }
+  },
+  "0.2.0": {
+    "date": "2026-04-24",
+    "title": "Advanced Search & Mobile AI",
+    "common": {
+      "features": [
+        "Better Search system using SQL FTS for faster performance and better handling of large data",
+        "Enhanced search with misspelling handling for multi-word queries",
+        "AI chatbot with smart context and folder/note selection",
+        "Improved inline code styling"
+      ],
+      "fixes": [
+        "Fixed indent and outdent behavior in the editor"
+      ]
+    },
+    "desktop": {
+      "features": [
+        "Redesigned and improved Note floating menu",
+        "New shortcuts: Cmd + P for global search, Cmd + F for in-note search",
+        "Advanced AI context system: supports folder/note selections with a smart scoring system to prioritize relevant context and minimize token usage",
+        "Three AI context modes: Manual Selection, Active Note, and Global"
+      ],
+      "fixes": [
+        "Fixed note count indicator positioning for RTL layouts"
+      ]
+    },
+    "mobile": {
+      "features": [
+        "Full AI Chat support with Bring Your Own Key (BYOK)",
+        "Native look and feel for drop-down menus"
+      ],
+      "fixes": []
+    }
   }
 };
