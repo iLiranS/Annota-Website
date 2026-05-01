@@ -198,5 +198,30 @@ export const changelogData = {
       ],
       "fixes": []
     }
+  },
+  "0.2.1": {
+    "date": "2026-05-02",
+    "title": "Flashcards & UI Polish",
+    "common": {
+      "features": [
+        "New global: 'Flashcards' block in editor",
+        "Better AI context management"
+      ],
+      "fixes": []
+    },
+    "desktop": {
+      "features": [
+        "Better sleek sidebar implementation",
+        "Improved editor selection reliability",
+        "New: can reorder toolbar buttons"
+      ],
+      "fixes": []
+    },
+    "mobile": {
+      "features": [],
+      "fixes": [
+        "Minor UI fixes"
+      ]
+    }
   }
 };
