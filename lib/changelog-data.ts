@@ -223,5 +223,26 @@ export const changelogData = {
         "Minor UI fixes"
       ]
     }
+  },
+  "0.3.0": {
+    "date": "2026-05-04",
+    "title": "AI Editor & Security Update",
+    "common": {
+      "features": [
+        "In-editor AI integration for seamless content generation and editing",
+        "All local data is now encrypted at rest using SQLCipher for enhanced security"
+      ],
+      "fixes": []
+    },
+    "desktop": {
+      "features": [],
+      "fixes": []
+    },
+    "mobile": {
+      "features": [],
+      "fixes": [
+        "Minor UI issues fixes"
+      ]
+    }
   }
 };
