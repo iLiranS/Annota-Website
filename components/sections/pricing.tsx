@@ -225,7 +225,7 @@ export function PricingSection() {
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <Check className="h-3 w-3 text-primary" />
                       </div>
-                      25MB Secure Cloud Storage
+                      10MB Secure Cloud Storage
                     </li>
                     <li className="flex items-center gap-3 font-semibold text-foreground">
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -251,7 +251,7 @@ export function PricingSection() {
                   <div className="flex items-center gap-1 h-5 uppercase tracking-widest text-primary font-bold text-[10px]">
                     <span className="relative top-0.5">*</span>
                     <span className="text-muted-foreground opacity-60">
-                      100 notes, 20 folders, 20 tags
+                      50 notes, 10 folders, 10 tags
                     </span>
                   </div>
                 </CardFooter>
@@ -260,7 +260,6 @@ export function PricingSection() {
 
             {/* Cloud Pro Card */}
             <motion.div variants={itemVariants} className="h-full relative group">
-              <div className="absolute -inset-0.5 bg-linear-to-r from-primary/50 to-purple-500/50 rounded-[inherit]  opacity-20 group-hover:opacity-40 transition-opacity" />
               <Card className="relative flex flex-col h-full border-2 border-primary/60 bg-background shadow-2xl overflow-hidden">
                 <div className="absolute top-0 right-0 p-4">
                   <Sparkles className="text-primary opacity-20" size={48} />
@@ -281,9 +280,9 @@ export function PricingSection() {
                         {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '' : '$'}
                       </span>
                       <span className="text-5xl font-black tracking-tighter text-foreground">
-                        {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '???' : '3'}
+                        {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '???' : '2.99'}
                       </span>
-                      <span className="text-[10px] pl-1 font-black text-muted-foreground uppercase tracking-widest leading-none">Monthly</span>
+                      <span className="text-[10px] pl-1 font-black text-muted-foreground uppercase tracking-widest leading-none">mo</span>
                     </div>
 
                     <div className="h-8 w-px bg-border/40" />
@@ -291,16 +290,16 @@ export function PricingSection() {
                     <div className="flex items-baseline  relative px-2">
                       <div className="absolute -top-4 -right-2">
                         <span className="inline-block rounded-full bg-primary px-2 py-0.5 text-[9px] text-primary-foreground font-black uppercase tracking-tighter shadow-lg ring-2 ring-background">
-                          25% OFF
+                          16% OFF
                         </span>
                       </div>
                       <span className="text-3xl font-black text-muted-foreground">
                         {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '' : '$'}
                       </span>
                       <span className="text-5xl font-black text-foreground">
-                        {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '???' : '27'}
+                        {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '???' : '30'}
                       </span>
-                      <span className="text-[10px] pl-1 font-black text-muted-foreground uppercase tracking-widest leading-none">Yearly</span>
+                      <span className="text-[10px] pl-1 font-black text-muted-foreground uppercase tracking-widest leading-none">Year</span>
                     </div>
                   </div>
                 </div>

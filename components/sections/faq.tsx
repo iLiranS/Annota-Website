@@ -7,6 +7,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
+import { ChevronDownIcon } from "lucide-react"
 
 const faqs = [
   {
@@ -14,8 +16,16 @@ const faqs = [
     answer: "Annota is a Offline and local-first note taking app with E2E encryption sync capabilities. It is designed to help you capture, organize, and interact with your content seamlessly. At its core, it is built to speed up your workflow and keep your thoughts securely organized in one place, without getting in your way."
   },
   {
+    question: "What features does Annota have?",
+    answer: "Support for PDF 📄, images 🖼️, beautiful editor ✨ including customizable tables 📊, flashcards 🗂️, code blocks 💻, quotes, details, LaTeX and more. Alongside AI features 🤖 such as in-editor assistant and AI chat as well that can look for specific folder / notes."
+  },
+  {
+    question: "Who is it for?",
+    answer: "Annota is designed for anyone who needs a powerful, private digital mind. It's perfect for students 🎓 who need to annotate PDFs and study with flashcards, programmers 💻 who want clean code blocks and an AI-powered coding assistant, teachers 🍎 who need to organize complex information into beautiful tables and notes, and professionals 💼 who value data privacy and local-first performance."
+  },
+  {
     question: "What platforms does Annota support?",
-    answer: "We currently support iOS and MacOS, soon to be on Android and Windows as well."
+    answer: "We currently support iOS, MacOS, and Windows, soon to be on Android as well."
   },
   {
     question: "How is my data stored and secured?",
@@ -33,6 +43,12 @@ const faqs = [
 ]
 
 export function FaqSection() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <section id="faq" className="lg:h-dvh py-20 sm:py-32 bg-background relative overflow-hidden flex flex-col justify-center">
 
@@ -73,22 +89,36 @@ export function FaqSection() {
           transition={{ delay: 0.2 }}
           className="max-w-3xl mx-auto"
         >
-          <Accordion type="single" collapsible className="w-full space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="border border-border bg-background/50 rounded-xl px-6 transition-all hover:border-primary/20 hover:shadow-lg group"
-              >
-                <AccordionTrigger className="text-left font-bold py-6  hover:no-underline data-[state=open]:text-primary  transition-colors">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-foreground/80 pb-6 leading-relaxed h-max">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          {mounted ? (
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="border border-border bg-background/50 rounded-xl px-6 transition-all hover:border-primary/20 hover:shadow-lg group"
+                >
+                  <AccordionTrigger className="text-left font-bold py-6  hover:no-underline data-[state=open]:text-primary  transition-colors">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-foreground/80 pb-6 leading-relaxed h-max">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          ) : (
+            <div className="w-full space-y-4">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="border border-border bg-background/50 rounded-xl px-6 py-6 transition-all flex items-center justify-between"
+                >
+                  <span className="text-left font-bold text-foreground/80">{faq.question}</span>
+                  <ChevronDownIcon className="size-4 text-muted-foreground" />
+                </div>
+              ))}
+            </div>
+          )}
         </motion.div>
 
 

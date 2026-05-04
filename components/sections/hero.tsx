@@ -85,25 +85,25 @@ export function Hero() {
               Your digital mind <br /> <span className="text-primary italic">Simple & Secure</span>
             </motion.h1>
 
-            <motion.div className="flex items-center justify-center p-1 rounded-full sm:rounded-2xl bg-muted/30  border border-border/50 w-full sm:w-auto overflow-hidden">
+            <motion.div className="flex items-center justify-center p-1 rounded-full sm:rounded-2xl bg-muted/30 border border-border/50 w-full sm:w-auto overflow-hidden">
               {/* Trust & Community Badges grouped together */}
-              <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 border-r border-border/50 whitespace-nowrap">
+              <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 whitespace-nowrap">
                 <Shield size={14} className="text-primary" />
                 <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-foreground/70">Local-First</span>
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 border-r border-border/50 whitespace-nowrap">
-                <PenLine size={14} className="text-primary" />
-                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-foreground/70">Encrypted</span>
               </div>
               <a
                 href="https://discord.gg/dG5nNJPDAh"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 group transition-colors hover:text-primary whitespace-nowrap"
+                className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 bg-primary text-white rounded-full sm:rounded-xl shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95 whitespace-nowrap"
               >
-                <FaDiscord size={14} className="text-primary group-hover:text-primary transition-colors" />
-                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-foreground/70 group-hover:text-primary transition-colors">Discord</span>
+                <FaDiscord size={14} className="text-white" />
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide">Discord</span>
               </a>
+              <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 whitespace-nowrap">
+                <PenLine size={14} className="text-primary" />
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-foreground/70">Encrypted</span>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -135,34 +135,53 @@ export function Hero() {
               )}
             >
               {[
-                { id: 'macos', name: 'App Store', icon: FaApple, label: 'Download from', size: 28 },
-                { id: 'windows', name: 'Windows', icon: FaWindows, label: 'Get it for', size: 24 },
-                { id: 'linux', name: 'Linux', icon: FaLinux, label: 'Get it for', size: 24 },
-                { id: 'android', name: 'Google Play', icon: FaGooglePlay, label: 'Available on', size: 24 },
+                { id: 'macos', name: 'App Store', icon: FaApple, label: 'Download from', size: 28, href: '#' },
+                { id: 'windows', name: 'Windows', icon: FaWindows, label: 'Get it for', size: 24, href: 'https://github.com/iLiranS/Annota/releases/latest' },
+                { id: 'linux', name: 'Linux', icon: FaLinux, label: 'Get it for', size: 24, href: '#' },
+                { id: 'android', name: 'Google Play', icon: FaGooglePlay, label: 'Available on', size: 24, href: '#' },
               ].map((p) => {
                 const isActive = platform === p.id || (p.id === 'macos' && platform === 'ios');
+                const isAvailable = p.href !== '#';
                 const Icon = p.icon;
+                const isAlpha = process.env.NEXT_PUBLIC_APP_ALPHA === 'true';
 
-                return (
-                  <Button
-                    key={p.id}
-                    disabled={process.env.NEXT_PUBLIC_APP_ALPHA === 'true' || !isActive}
-                    variant={(isActive && process.env.NEXT_PUBLIC_APP_ALPHA !== 'true') ? "default" : "outline"}
-                    className={cn(
-                      "group relative h-14 sm:h-16 flex-col items-center justify-center gap-0.5 rounded-xl sm:rounded-2xl transition-all hover:scale-105 active:scale-95 px-2 text-center",
-                      isActive && process.env.NEXT_PUBLIC_APP_ALPHA !== 'true'
-                        ? "bg-primary text-white shadow-2xl shadow-primary/30"
-                        : "border-border/60 bg-background/40 text-foreground  hover:bg-muted/50"
-                    )}
-                  >
+                const buttonContent = (
+                  <>
                     <div className="flex items-center gap-2">
-                      <Icon size={p.size} className={cn("transition-transform group-hover:scale-110", isActive && process.env.NEXT_PUBLIC_APP_ALPHA !== 'true' ? "text-white" : "text-foreground/70")} />
+                      <Icon size={p.size} className={cn("transition-transform group-hover:scale-110", isActive && !isAlpha ? "text-white" : "text-foreground/70")} />
                       <div className="text-left leading-none">
                         <span className="block text-[8px] sm:text-[10px] uppercase font-black opacity-60 tracking-widest">{p.label}</span>
                         <span className="text-xs sm:text-sm font-black">{p.name}</span>
                       </div>
                     </div>
-                    {(!isActive || process.env.NEXT_PUBLIC_APP_ALPHA === 'true') && <div className="absolute inset-0 bg-background/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-inherit text-[8px] font-black uppercase tracking-widest text-muted-foreground">Coming Soon</div>}
+                    {(!isAvailable || isAlpha) && (
+                      <div className="absolute inset-0 bg-background/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-inherit text-[8px] font-black uppercase tracking-widest text-muted-foreground">
+                        Coming Soon
+                      </div>
+                    )}
+                  </>
+                );
+
+                return (
+                  <Button
+                    key={p.id}
+                    asChild={isAvailable && !isAlpha}
+                    disabled={isAlpha || (!isActive && !isAvailable)}
+                    variant={(isActive && !isAlpha) ? "default" : "outline"}
+                    className={cn(
+                      "group relative h-14 sm:h-16 flex-col items-center justify-center gap-0.5 rounded-xl sm:rounded-2xl transition-all hover:scale-105 active:scale-95 px-2 text-center",
+                      isActive && !isAlpha
+                        ? "bg-primary text-white shadow-2xl shadow-primary/30"
+                        : "border-border/60 bg-background/40 text-foreground  hover:bg-muted/50"
+                    )}
+                  >
+                    {isAvailable && !isAlpha ? (
+                      <a href={p.href} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center w-full h-full">
+                        {buttonContent}
+                      </a>
+                    ) : (
+                      buttonContent
+                    )}
                   </Button>
                 );
               })}
