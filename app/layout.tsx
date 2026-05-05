@@ -8,10 +8,38 @@ import { getGithubStars } from "@/lib/github"
 import { cn } from "@/lib/utils";
 import { Metadata } from 'next';
 import { Analytics } from "@vercel/analytics/next"
+import { StructuredData } from "@/components/seo/StructuredData"
 
 export const metadata: Metadata = {
-  title: 'Annota App', // This is the website name/title
-  description: 'Annota App Official Website',
+  title: 'Annota - Your Secure Digital Mind & Local-First Knowledge Base',
+  description: 'Annota is a secure, local-first web annotation and knowledge management tool. Own your data with end-to-end encryption for your digital mind.',
+  keywords: ['annota', 'web annotation', 'personal knowledge base', 'local-first', 'encrypted notes', 'digital mind', 'privacy-focused annotation', 'knowledge management'],
+  metadataBase: new URL('https://www.annota.online'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Annota - Your Secure Digital Mind',
+    description: 'Secure, local-first web annotation and knowledge management tool.',
+    url: 'https://www.annota.online',
+    siteName: 'Annota',
+    images: [
+      {
+        url: '/assets/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Annota Logo',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Annota - Your Secure Digital Mind',
+    description: 'Secure, local-first web annotation and knowledge management tool.',
+    images: ['/assets/logo.png'],
+  },
 };
 
 
@@ -43,6 +71,7 @@ export default async function RootLayout({
           </div>
         </ThemeProvider>
         <Analytics />
+        <StructuredData />
       </body>
     </html>
   )
