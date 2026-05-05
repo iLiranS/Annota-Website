@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.annota.online'
+  const baseUrl = 'https://annota.online'
   
   const routes = [
     '',

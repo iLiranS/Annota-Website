@@ -11,17 +11,17 @@ import { Analytics } from "@vercel/analytics/next"
 import { StructuredData } from "@/components/seo/StructuredData"
 
 export const metadata: Metadata = {
-  title: 'Annota - Your Secure Digital Mind & Local-First Knowledge Base',
-  description: 'Annota is a secure, local-first web annotation and knowledge management tool. Own your data with end-to-end encryption for your digital mind.',
-  keywords: ['annota', 'web annotation', 'personal knowledge base', 'local-first', 'encrypted notes', 'digital mind', 'privacy-focused annotation', 'knowledge management'],
-  metadataBase: new URL('https://www.annota.online'),
+  title: 'Annota - Your Secure Digital Mind & Local-First Note Taking App',
+  description: 'Annota is a secure, local-first note taking and knowledge management tool. Own your data with end-to-end encryption for your digital mind.',
+  keywords: ['annota', 'note taking', 'personal knowledge base', 'local-first', 'encrypted notes', 'digital mind', 'privacy-focused notes', 'knowledge management'],
+  metadataBase: new URL('https://annota.online'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'Annota - Your Secure Digital Mind',
-    description: 'Secure, local-first web annotation and knowledge management tool.',
-    url: 'https://www.annota.online',
+    description: 'Secure, local-first note taking and knowledge management tool.',
+    url: 'https://annota.online',
     siteName: 'Annota',
     images: [
       {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Annota - Your Secure Digital Mind',
-    description: 'Secure, local-first web annotation and knowledge management tool.',
+    description: 'Secure, local-first note taking and knowledge management tool.',
     images: ['/assets/logo.png'],
   },
 };

@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Annota',
     short_name: 'Annota',
-    description: 'Annota - Your Secure Digital Mind & Local-First Knowledge Base',
+    description: 'Annota - Your Secure Digital Mind & Local-First Note Taking App',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',
