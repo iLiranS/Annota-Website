@@ -22,7 +22,7 @@ const itemVariants: Variants = {
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="lg:py-20 bg-background relative overflow-hidden">
+    <section id="pricing" className="py-20 bg-background relative overflow-hidden">
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-20 text-center">
