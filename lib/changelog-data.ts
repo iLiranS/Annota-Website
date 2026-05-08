@@ -244,5 +244,39 @@ export const changelogData = {
         "Minor UI issues fixes"
       ]
     }
+  },
+  "0.3.1": {
+    "date": "2026-05-08",
+    "title": "Sync & UI Refinement",
+    "common": {
+      "features": [
+        "Dynamic image resizing with interactive drag handles",
+        "More consistent login and session persistence"
+      ],
+      "fixes": [
+        "Enhanced sync reliability with better error handling",
+        "Fixed search misses on desktop with automatic index healing"
+      ]
+    },
+    "desktop": {
+      "features": [],
+      "fixes": [
+        "Fixed navigation issues when returning from settings",
+        "Corrected sidebar resize handle alignment",
+        "Improved Tab shortcut and indentation behavior",
+        "Fixed sidebar tab jittering"
+      ]
+    },
+    "mobile": {
+      "features": [
+        "Added pull-to-sync with a visual spinner"
+      ],
+      "fixes": [
+        "Fixed swipe-back gesture for notes opened from Quick Access",
+        "Centered the New Note button icon",
+        "Improved folder name display in limited space",
+        "Fixed search input glitches"
+      ]
+    }
   }
 };
