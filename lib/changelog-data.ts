@@ -278,5 +278,35 @@ export const changelogData = {
         "Fixed search input glitches"
       ]
     }
+  },
+  "0.3.2": {
+    "date": "2026-05-09",
+    "title": "Storage Optimization & UI Fixes",
+    "common": {
+      "features": [
+        "Significant improvements to storage utilization by optimizing the encrypted footprint of several block types",
+
+      ],
+      "fixes": [
+        "Fixed an issue where code block highlighting was not applying in light mode",
+        "Refined table visuals and resolved styling mismatches between desktop and mobile",
+        "Note: Storage optimizations for tables may require users to re-apply column widths on some existing tables"
+      ]
+    },
+    "desktop": {
+      "features": [
+        "Improved 'Details' block: selected text is now automatically wrapped into the content when created"
+      ],
+      "fixes": [
+        "Fixed toolbar highlight and text color indicators visibility",
+        "Various minor UI fixes"
+      ]
+    },
+    "mobile": {
+      "features": [
+        "Enabled YouTube video playback directly within the mobile editor"
+      ],
+      "fixes": []
+    }
   }
 };
