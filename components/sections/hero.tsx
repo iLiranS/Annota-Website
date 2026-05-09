@@ -202,13 +202,13 @@ export function Hero() {
             {/* Desktop Preview - Clean, borderless */}
             <motion.div
               style={{ rotateX: desktopRotateX }}
-              className="relative w-full lg:w-[85%]  aspect-16/10 overflow-hidden"
+              className="relative w-full lg:w-[85%]   aspect-16/10 overflow-hidden"
             >
               <Image
                 src={mounted && theme.resolvedTheme === 'dark' ? "/assets/desktop/preview_dark.webp" : "/assets/desktop/preview_light.webp"}
                 alt="Annota Desktop"
                 fill
-                className="object-cover"
+                className="object-fit"
                 priority
                 unoptimized
               />
@@ -218,7 +218,7 @@ export function Hero() {
             {/* Mobile Preview Frame - Overlapping Desktop */}
             <motion.div
               style={{ x: mobileTranslateX, y: mobileTranslateY }}
-              className="absolute right-4 bottom-[-5%] sm:bottom-[-10%] w-28 sm:w-[28%] lg:w-[22%] aspect-9/19.5 rounded-[2rem] sm:rounded-[3rem] border-2 sm:border-8 border-muted/40 overflow-hidden shadow-[0_50px_80px_-15px_rgba(0,0,0,0.4)] z-30 ring-1 ring-border"
+              className="absolute right-3 sm:right-4 bottom-[-15%] sm:bottom-[-10%] w-24 sm:w-[28%] lg:w-[22%] aspect-9/19.5 rounded-[1rem] sm:rounded-[2rem] overflow-hidden shadow-[0_50px_80px_-15px_rgba(0,0,0,0.4)] z-30 ring-2 ring-border/50"
             >
               <Image
                 src={mounted && theme.resolvedTheme === 'dark' ? "/assets/mobile/preview_dark.webp" : "/assets/mobile/preview_light.webp"}
