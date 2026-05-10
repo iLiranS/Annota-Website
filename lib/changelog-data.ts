@@ -284,8 +284,7 @@ export const changelogData = {
     "title": "Storage Optimization & UI Fixes",
     "common": {
       "features": [
-        "Significant improvements to storage utilization by optimizing the encrypted footprint of several block types",
-
+        "Significant improvements to storage utilization by optimizing the encrypted footprint of several block types"
       ],
       "fixes": [
         "Fixed an issue where code block highlighting was not applying in light mode",
@@ -307,6 +306,36 @@ export const changelogData = {
         "Enabled YouTube video playback directly within the mobile editor"
       ],
       "fixes": []
+    }
+  },
+  "0.3.3": {
+    "date": "2026-05-10",
+    "title": "Settings, Shortcuts & Stability",
+    "common": {
+      "features": [
+        "Added an indicator in the sidebar if a newer version is available",
+        "Improved image resize handles with snap-to-full-width support"
+      ],
+      "fixes": []
+    },
+    "desktop": {
+      "features": [
+        "New 'Always on Top' toggle for the main window and standalone notes",
+        "Enhanced navigation bar for 'Open note in new window' mode",
+        "Added a 'Shortcuts' tab in settings to view all keyboard commands",
+        "Quickly open settings using 'Cmd+,'"
+      ],
+      "fixes": [
+        "Right-clicking YouTube videos now correctly opens the link context menu"
+      ]
+    },
+    "mobile": {
+      "features": [],
+      "fixes": [
+        "Fixed 'emit undefined' error during certain login scenarios",
+        "Prevented unnecessary note updates when opening the keyboard",
+        "Fixed image gallery zooming position and improved interaction areas"
+      ]
     }
   }
 };
