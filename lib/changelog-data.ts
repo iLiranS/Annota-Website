@@ -337,5 +337,31 @@ export const changelogData = {
         "Fixed image gallery zooming position and improved interaction areas"
       ]
     }
+  },
+  "0.3.4": {
+    "date": "2026-05-13",
+    "title": "AI Improvements",
+    "common": {
+      "features": [
+        "Major improvements to AI integration and behind-the-scenes context management",
+        "Enhanced AI in-editor with “send to chat” support for specific highlights",
+        "Better AI customization with reasoning and web search capabilities"
+      ],
+      "fixes": [
+        "Fixed an issue where flashcards insertion did not save"
+      ]
+    },
+    "desktop": {
+      "features": [],
+      "fixes": [
+        "Fixed rare occasion where switching folder did not work in sidebar"
+      ]
+    },
+    "mobile": {
+      "features": [
+        "AI chats UI improvements"
+      ],
+      "fixes": []
+    }
   }
 };
