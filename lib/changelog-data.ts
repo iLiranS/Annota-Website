@@ -363,5 +363,28 @@ export const changelogData = {
       ],
       "fixes": []
     }
+  },
+  "0.3.5": {
+    "date": "2026-05-13",
+    "title": "Windows Polish & Stability",
+    "common": {
+      "features": [],
+      "fixes": [
+        "Better selection handling in the note editor"
+      ]
+    },
+    "desktop": {
+      "features": [],
+      "fixes": [
+        "Fixed AI Sidebar shortcut (Ctrl+E) compatibility for non-English keyboard layouts on Windows",
+        "Corrected shortcut icons in the main navbar for Windows (now showing Ctrl instead of Command)",
+        "Resolved an issue where 'Open in new tab' could freeze the application",
+        "Fixed YouTube thumbnail clicks to correctly open in the external browser"
+      ]
+    },
+    "mobile": {
+      "features": [],
+      "fixes": []
+    }
   }
 };
