@@ -386,5 +386,30 @@ export const changelogData = {
       "features": [],
       "fixes": []
     }
+  },
+  "0.4.0": {
+    "date": "2026-05-14",
+    "title": "Note Information & Bug Fixes",
+    "common": {
+      "features": [
+        "New Note Information area for managing note metadata and details"
+      ],
+      "fixes": []
+    },
+    "desktop": {
+      "features": [
+        "Integrated Note Info into the secondary sidebar and note floating actions"
+      ],
+      "fixes": [
+        "Fixed image upload not working when using a URL",
+        "Fixed an issue where AI messages were sometimes inserted twice into a note"
+      ]
+    },
+    "mobile": {
+      "features": [
+        "Added Note Info access via the 'More' button in the note editor"
+      ],
+      "fixes": []
+    }
   }
 };
