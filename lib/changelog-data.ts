@@ -167,5 +167,32 @@ export const changelogData = {
       "features": [],
       "fixes": []
     }
+  },
+  "0.4.2": {
+    "date": "2026-05-16",
+    "title": "Media Browser & Editor Handles",
+    "common": {
+      "features": [
+        "Block drag handles for easier content re-arrangement",
+        "Refined quote styling for a cleaner, borderless look",
+        "Platform-specific extension system for optimized performance"
+      ],
+      "fixes": [
+        "Minor UI refinements and polish"
+      ]
+    },
+    "desktop": {
+      "features": [
+        "Integrated Media Browser in the secondary sidebar to track media usage",
+        "Improved secondary sidebar structure and spacing (pinned & floating)"
+      ],
+      "fixes": []
+    },
+    "mobile": {
+      "features": [
+        "New Media Browser (Settings > Storage & Database) to search and manage note media"
+      ],
+      "fixes": []
+    }
   }
 };
