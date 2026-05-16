@@ -135,7 +135,7 @@ export function Hero() {
               )}
             >
               {[
-                { id: 'macos', name: 'App Store', icon: FaApple, label: 'Download from', size: 28, href: '#' },
+                { id: 'macos', name: 'TestFlight', icon: FaApple, label: 'Download from', size: 28, href: 'https://testflight.apple.com/join/mmgSW44D' },
                 { id: 'windows', name: 'Windows', icon: FaWindows, label: 'Get it for', size: 24, href: 'https://github.com/iLiranS/Annota/releases/latest' },
                 { id: 'linux', name: 'Linux', icon: FaLinux, label: 'Get it for', size: 24, href: '#' },
                 { id: 'android', name: 'Google Play', icon: FaGooglePlay, label: 'Available on', size: 24, href: '#' },

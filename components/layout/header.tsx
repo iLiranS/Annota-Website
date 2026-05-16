@@ -78,7 +78,7 @@ export function Header({ stars }: HeaderProps) {
           >
             <Button
               className="relative overflow-hidden gap-2 bg-primary text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-500 border border-primary/20 group/button"
-              asChild={process.env.NEXT_PUBLIC_APP_ALPHA === 'true' && process.env.NEXT_PUBLIC_ALPHA_STARTED !== 'true'}
+              asChild={process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? process.env.NEXT_PUBLIC_ALPHA_STARTED !== 'true' : true}
             >
               {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? (
                 (() => {
@@ -121,7 +121,12 @@ export function Header({ stars }: HeaderProps) {
                   );
                 })()
               ) : (
-                <div className="relative z-10 text-white flex items-center gap-2">
+                <a
+                  href={platform === 'macos' || platform === 'ios' ? 'https://testflight.apple.com/join/mmgSW44D' : 'https://github.com/iLiranS/Annota/releases/latest'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative z-10 text-white flex items-center gap-2"
+                >
                   <span className="flex items-center gap-2 transition-transform duration-300 group-hover/button:translate-x-0.5">
                     {platform === 'macos' && <FaApple className="h-4 w-4 transition-transform group-hover/button:-rotate-12" />}
                     {platform === 'windows' && <FaWindows className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
@@ -142,7 +147,7 @@ export function Header({ stars }: HeaderProps) {
                       ease: "easeInOut",
                     }}
                   />
-                </div>
+                </a>
               )}
             </Button>
           </motion.div>
