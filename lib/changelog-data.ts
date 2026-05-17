@@ -194,5 +194,30 @@ export const changelogData = {
       ],
       "fixes": []
     }
+  },
+  "0.4.3": {
+    "date": "2026-05-17",
+    "title": "Tasks Sidebar & Integrated Media Search",
+    "common": {
+      "features": [],
+      "fixes": []
+    },
+    "desktop": {
+      "features": [
+        "Added Tasks to the secondary sidebar, showing notes with uncompleted tasks with the option to complete them directly",
+        "Improved secondary sidebar visuals"
+      ],
+      "fixes": [
+        "Fixed drag handle in 'new tab' notes not working correctly",
+        "Ensured block drag handles always appear on hovered elements (headers, paragraphs, etc.)"
+      ]
+    },
+    "mobile": {
+      "features": [
+        "Added Tasks on the sidebar to display notes with uncompleted tasks and complete them on the spot",
+        "Added 'Media' search inside the search overlay with a filter to find media and see where it is being used"
+      ],
+      "fixes": []
+    }
   }
 };
