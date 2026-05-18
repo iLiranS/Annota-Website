@@ -46,73 +46,6 @@ export function PricingSection() {
         </div>
 
         <div className="relative">
-          {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' && (
-            <div className="absolute backdrop-blur-sm inset-0 z-50 w-full h-full bg-background/40 flex flex-col items-center justify-center gap-6 text-center px-4">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.5, type: "spring" }}
-                className="flex flex-col items-center gap-6"
-              >
-                {process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? (
-                  <div className="bg-primary text-primary-foreground px-10 py-4 rounded-full font-black uppercase tracking-[0.3em] text-2xl shadow-[0_0_30px_rgba(var(--primary),0.5)] -rotate-2 border-4 border-primary-foreground/20 transition-all cursor-default group relative overflow-hidden">
-                    <span className="relative z-10">In Alpha</span>
-                    <motion.div
-                      className="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
-                      animate={{
-                        x: ["-100%", "100%"],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatDelay: 1,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  </div>
-                ) : (
-                  <a
-                    href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-primary text-primary-foreground px-10 py-4 rounded-full font-black uppercase tracking-[0.3em] text-2xl shadow-[0_0_30px_rgba(var(--primary),0.5)] -rotate-2 border-4 border-primary-foreground/20 transition-all hover:scale-105 hover:rotate-0 active:scale-95 pointer-events-auto group relative overflow-hidden"
-                  >
-                    <span className="relative z-10">Apply Now</span>
-                    <motion.div
-                      className="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
-                      animate={{
-                        x: ["-100%", "100%"],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatDelay: 1,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  </a>
-                )}
-
-                {process.env.NEXT_PUBLIC_ALPHA_STARTED !== 'true' && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="flex flex-col items-center gap-2"
-                  >
-                    <p className="text-foreground font-black text-xl uppercase lg:text-3xl tracking-tight italic">
-                      AND Get <span className="text-primary underline decoration-wavy decoration-2">Lifetime Discount</span> later on!
-                    </p>
-                    <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map((i) => (
-                        <Sparkles key={i} className="h-4 w-4 text-primary animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
-            </div>
-          )}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -133,7 +66,7 @@ export function PricingSection() {
                 <div className="relative border-y border-border/40 py-6 px-8 bg-muted/20  flex items-center">
                   <div className="flex items-baseline gap-1">
                     <span className="text-5xl font-black tracking-tighter text-foreground">
-                      {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '???' : '$0'}
+                      $0
                     </span>
                     <span className="text-sm font-bold text-muted-foreground">/ forever</span>
                   </div>
@@ -199,7 +132,7 @@ export function PricingSection() {
                 <div className="relative border-y border-border/40 py-6 px-8 bg-muted/20 flex items-center">
                   <div className="flex items-baseline gap-1">
                     <span className="text-5xl font-black tracking-tighter text-foreground">
-                      {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '???' : '$0'}
+                      $0
                     </span>
                     <span className="text-sm font-bold text-muted-foreground">/ forever</span>
                   </div>
@@ -277,10 +210,10 @@ export function PricingSection() {
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-baseline px-2">
                       <span className="text-3xl font-black text-muted-foreground">
-                        {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '' : '$'}
+                        $
                       </span>
                       <span className="text-5xl font-black tracking-tighter text-foreground">
-                        {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '???' : '2.99'}
+                        1.99
                       </span>
                       <span className="text-[10px] pl-1 font-black text-muted-foreground uppercase tracking-widest leading-none">mo</span>
                     </div>
@@ -288,16 +221,16 @@ export function PricingSection() {
                     <div className="h-8 w-px bg-border/40" />
 
                     <div className="flex items-baseline  relative px-2">
-                      <div className="absolute -top-4 -right-2">
-                        <span className="inline-block rounded-full bg-primary px-2 py-0.5 text-[9px] text-primary-foreground font-black uppercase tracking-tighter shadow-lg ring-2 ring-background">
-                          16% OFF
+                      <div className="absolute -top-4 right-4">
+                        <span className="inline-block rounded-full bg-primary px-2 py-0.5 text-xs text-white font-black uppercase tracking-tighter shadow-lg ring-2 ring-background">
+                          17% OFF
                         </span>
                       </div>
                       <span className="text-3xl font-black text-muted-foreground">
-                        {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '' : '$'}
+                        $
                       </span>
                       <span className="text-5xl font-black text-foreground">
-                        {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? '???' : '30'}
+                        20
                       </span>
                       <span className="text-[10px] pl-1 font-black text-muted-foreground uppercase tracking-widest leading-none">Year</span>
                     </div>

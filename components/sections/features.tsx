@@ -20,7 +20,7 @@ const features: Feature[] = [
   {
     id: "editor",
     title: "Powerful Editor",
-    description: "Embed images, PDFs, tables, LaTeX, FlashCards, Code and more in a distraction-free environment. Everything you need to capture complex ideas with ease.",
+    description: "Embed images, PDFs, tables, LaTeX, FlashCards, Code and more in a distraction-free environment. Everything you need to capture complex ideas with ease. All wrapped in an ultra-fast and smooth UI.",
     icon: FileText,
     videoUrl: "/assets/features/editor.mp4",
     color: "text-purple-500"
@@ -125,33 +125,32 @@ export function FeatureSection() {
         <div className="flex h-full w-full flex-col lg:flex-row">
           {/* Left: visual */}
           <div className="w-full lg:w-3/5 h-full relative flex items-center justify-center p-4 lg:p-12 xl:p-20">
-            <div className="relative w-full aspect-video rounded-2xl lg:rounded-3xl bg-muted/20 border border-border/50 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)] lg:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeIndex}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 w-full h-full"
-                >
-                  <FeatureVisual
-                    url={
-                      features[activeIndex].videoUrl
-                        ? (blobUrls[features[activeIndex].videoUrl!] ?? features[activeIndex].videoUrl!)
-                        : (features[activeIndex].imageUrl ?? "")
-                    }
-                    type={features[activeIndex].videoUrl ? "video" : "image"}
-                    title={features[activeIndex].title}
-                    // Don't show the video element until its blob is ready,
-                    // avoids a stalled <video> pointing at a slow remote URL.
-                    ready={
-                      !features[activeIndex].videoUrl ||
-                      !!blobUrls[features[activeIndex].videoUrl!]
-                    }
-                  />
-                </motion.div>
-              </AnimatePresence>
+            <div className="relative w-full aspect-1826/1080 rounded-2xl lg:rounded-3xl bg-muted/20 border border-border/50 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)] lg:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden">              <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <FeatureVisual
+                  url={
+                    features[activeIndex].videoUrl
+                      ? (blobUrls[features[activeIndex].videoUrl!] ?? features[activeIndex].videoUrl!)
+                      : (features[activeIndex].imageUrl ?? "")
+                  }
+                  type={features[activeIndex].videoUrl ? "video" : "image"}
+                  title={features[activeIndex].title}
+                  // Don't show the video element until its blob is ready,
+                  // avoids a stalled <video> pointing at a slow remote URL.
+                  ready={
+                    !features[activeIndex].videoUrl ||
+                    !!blobUrls[features[activeIndex].videoUrl!]
+                  }
+                />
+              </motion.div>
+            </AnimatePresence>
             </div>
 
             {/* Ambient glow */}
@@ -261,7 +260,7 @@ function FeatureVisual({
           loop
           playsInline
           controls
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
         />
       ) : type === "image" ? (
         <Image src={url} alt={title} fill className="object-cover" unoptimized />

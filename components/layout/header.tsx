@@ -78,77 +78,35 @@ export function Header({ stars }: HeaderProps) {
           >
             <Button
               className="relative overflow-hidden gap-2 bg-primary text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all duration-500 border border-primary/20 group/button"
-              asChild={process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? process.env.NEXT_PUBLIC_ALPHA_STARTED !== 'true' : true}
+              asChild
             >
-              {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' ? (
-                (() => {
-                  const content = (
-                    <>
-                      <p className="text-white">{process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? 'In Alpha' : 'Apply Now'}</p>
-                      <motion.div
-                        className="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
-                        animate={{
-                          x: ["-100%", "100%"],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          repeatDelay: 1.5,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    </>
-                  );
-                  const className = "relative z-10 font-bold uppercase tracking-widest text-[10px] transition-all group-hover/button:tracking-[0.15em] flex items-center justify-center gap-2";
-
-                  if (process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true') {
-                    return (
-                      <div className={className}>
-                        {content}
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <a
-                      href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={className}
-                    >
-                      {content}
-                    </a>
-                  );
-                })()
-              ) : (
-                <a
-                  href={platform === 'macos' || platform === 'ios' ? 'https://testflight.apple.com/join/mmgSW44D' : 'https://github.com/iLiranS/Annota/releases/latest'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative z-10 text-white flex items-center gap-2"
-                >
-                  <span className="flex items-center gap-2 transition-transform duration-300 group-hover/button:translate-x-0.5">
-                    {platform === 'macos' && <FaApple className="h-4 w-4 transition-transform group-hover/button:-rotate-12" />}
-                    {platform === 'windows' && <FaWindows className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
-                    {platform === 'linux' && <FaLinux className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
-                    {platform === 'android' && <FaAndroid className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
-                    {platform === 'ios' && <FaApple className="h-4 w-4 transition-transform group-hover/button:-rotate-12" />}
-                  </span>
-                  Download App
-                  <motion.div
-                    className="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
-                    animate={{
-                      x: ["-100%", "100%"],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatDelay: 1.5,
-                      ease: "easeInOut",
-                    }}
-                  />
-                </a>
-              )}
+              <a
+                href={platform === 'macos' || platform === 'ios' ? 'https://testflight.apple.com/join/mmgSW44D' : 'https://github.com/iLiranS/Annota/releases/latest'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative z-10 text-white flex items-center gap-2"
+              >
+                <span className="flex items-center gap-2 transition-transform duration-300 group-hover/button:translate-x-0.5">
+                  {platform === 'macos' && <FaApple className="h-4 w-4 transition-transform group-hover/button:-rotate-12" />}
+                  {platform === 'windows' && <FaWindows className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
+                  {platform === 'linux' && <FaLinux className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
+                  {platform === 'android' && <FaAndroid className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
+                  {platform === 'ios' && <FaApple className="h-4 w-4 transition-transform group-hover/button:-rotate-12" />}
+                </span>
+                Download App
+                <motion.div
+                  className="absolute inset-0 z-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
+                  animate={{
+                    x: ["-100%", "100%"],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 1.5,
+                    ease: "easeInOut",
+                  }}
+                />
+              </a>
             </Button>
           </motion.div>
         </div>

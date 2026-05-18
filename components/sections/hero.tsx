@@ -109,52 +109,37 @@ export function Hero() {
 
           {/* Download Buttons - Professional Grid */}
           <div className="relative w-full max-w-4xl px-2 sm:px-4">
-            {process.env.NEXT_PUBLIC_APP_ALPHA === 'true' && (
-              <div className="absolute backdrop-blur-[2px] inset-0 z-50 flex items-center justify-center">
-                {process.env.NEXT_PUBLIC_ALPHA_STARTED === 'true' ? (
-                  <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-black uppercase tracking-[0.3em] text-sm shadow-2xl -rotate-2 border-2 border-primary-foreground/20 transition-transform cursor-default">
-                    In Alpha
-                  </div>
-                ) : (
-                  <a
-                    href={process.env.NEXT_PUBLIC_ALPHA_FORM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-black uppercase tracking-[0.3em] text-sm shadow-2xl -rotate-2 border-2 border-primary-foreground/20 transition-transform hover:scale-105 active:scale-95 pointer-events-auto"
-                  >
-                    Apply Now
-                  </a>
-                )}
-              </div>
-            )}
             <motion.div
               variants={itemVariants}
-              className={cn(
-                "grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 w-full relative z-40",
-                process.env.NEXT_PUBLIC_APP_ALPHA === 'true' && "opacity-40 grayscale-[0.5]"
-              )}
+              className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 w-full relative z-40"
             >
               {[
-                { id: 'macos', name: 'TestFlight', icon: FaApple, label: 'Download from', size: 28, href: 'https://testflight.apple.com/join/mmgSW44D' },
-                { id: 'windows', name: 'Windows', icon: FaWindows, label: 'Get it for', size: 24, href: 'https://github.com/iLiranS/Annota/releases/latest' },
-                { id: 'linux', name: 'Linux', icon: FaLinux, label: 'Get it for', size: 24, href: '#' },
-                { id: 'android', name: 'Google Play', icon: FaGooglePlay, label: 'Available on', size: 24, href: '#' },
+                { id: 'macos', name: 'TestFlight', icon: FaApple, label: 'Download from', href: 'https://testflight.apple.com/join/mmgSW44D' },
+                { id: 'windows', name: 'Windows', icon: FaWindows, label: 'Get it for', href: 'https://github.com/iLiranS/Annota/releases/latest' },
+                { id: 'linux', name: 'Linux', icon: FaLinux, label: 'Get it for', href: '#' },
+                { id: 'android', name: 'Google Play', icon: FaGooglePlay, label: 'Available on', href: '#' },
               ].map((p) => {
                 const isActive = platform === p.id || (p.id === 'macos' && platform === 'ios');
                 const isAvailable = p.href !== '#';
                 const Icon = p.icon;
-                const isAlpha = process.env.NEXT_PUBLIC_APP_ALPHA === 'true';
+
+                const labelText = isAvailable ? p.label : "Coming soon";
+                const iconClass = cn(
+                  "transition-transform group-hover:scale-110",
+                  isActive ? "text-white" : "text-foreground/70",
+                  p.id === 'macos' ? "w-6 h-6 sm:w-7 sm:h-7" : "w-5 h-5 sm:w-6 sm:h-6"
+                );
 
                 const buttonContent = (
                   <>
-                    <div className="flex items-center gap-2">
-                      <Icon size={p.size} className={cn("transition-transform group-hover:scale-110", isActive && !isAlpha ? "text-white" : "text-foreground/70")} />
+                    <div className="flex items-center gap-1.5 sm:gap-2">
+                      <Icon className={iconClass} />
                       <div className="text-left leading-none">
-                        <span className="block text-[8px] sm:text-[10px] uppercase font-black opacity-60 tracking-widest">{p.label}</span>
+                        <span className="block text-[8px] sm:text-[10px] uppercase font-black opacity-60 tracking-wider sm:tracking-widest">{labelText}</span>
                         <span className="text-xs sm:text-sm font-black">{p.name}</span>
                       </div>
                     </div>
-                    {(!isAvailable || isAlpha) && (
+                    {!isAvailable && (
                       <div className="absolute inset-0 bg-background/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-inherit text-[8px] font-black uppercase tracking-widest text-muted-foreground">
                         Coming Soon
                       </div>
@@ -165,17 +150,17 @@ export function Hero() {
                 return (
                   <Button
                     key={p.id}
-                    asChild={isAvailable && !isAlpha}
-                    disabled={isAlpha || (!isActive && !isAvailable)}
-                    variant={(isActive && !isAlpha) ? "default" : "outline"}
+                    asChild={isAvailable}
+                    disabled={!isActive && !isAvailable}
+                    variant={isActive ? "default" : "outline"}
                     className={cn(
-                      "group relative h-14 sm:h-16 flex-col items-center justify-center gap-0.5 rounded-xl sm:rounded-2xl transition-all hover:scale-105 active:scale-95 px-2 text-center",
-                      isActive && !isAlpha
+                      "group relative  min-h-16 w-full flex-col items-center justify-center gap-0.5 rounded-xl sm:rounded-2xl transition-all hover:scale-105 active:scale-95 px-2.5 sm:px-4 text-center",
+                      isActive
                         ? "bg-primary text-white shadow-2xl shadow-primary/30"
                         : "border-border/60 bg-background/40 text-foreground  hover:bg-muted/50"
                     )}
                   >
-                    {isAvailable && !isAlpha ? (
+                    {isAvailable ? (
                       <a href={p.href} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center justify-center w-full h-full">
                         {buttonContent}
                       </a>
