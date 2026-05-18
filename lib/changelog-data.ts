@@ -219,5 +219,31 @@ export const changelogData = {
       ],
       "fixes": []
     }
+  },
+  "0.5.0": {
+    "date": "2026-05-18",
+    "title": "Multi-Note Tabs & LaTeX Enhancements",
+    "common": {
+      "features": [
+        "Enhanced LaTeX input with inline or block layout selection, better error handling, and real-time preview"
+      ],
+      "fixes": []
+    },
+    "desktop": {
+      "features": [
+        "Multi-note tab functionality with configurable settings and persistent tab state",
+        "Added icons to folder sort by dropdown"
+      ],
+      "fixes": [
+        "Fixed incorrect background color on hover for Toolbar Math button"
+      ]
+    },
+    "mobile": {
+      "features": [
+        "Added notes count indicator for media library previews",
+        "Added smooth animations for swipeable card items"
+      ],
+      "fixes": []
+    }
   }
 };
