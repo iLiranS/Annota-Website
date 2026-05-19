@@ -245,5 +245,36 @@ export const changelogData = {
       ],
       "fixes": []
     }
+  },
+  "0.5.1": {
+    "date": "2026-05-19",
+    "title": "Tab Enhancements & Sync Optimization",
+    "common": {
+      "features": [
+        "Improved syncing system behind the scenes to efficiently support thousands of notes simultaneously",
+        "Added support for converting LaTeX formulas between inline and block layouts in the editor",
+        "Added an option to remove configured AI keys in Settings"
+      ],
+      "fixes": [
+        "Fixed text selection highlight colors on completed task list items being affected by checked styling"
+      ]
+    },
+    "desktop": {
+      "features": [
+        "Introduced tab pinning—pinned tabs stay at the front, persist when closing other tabs, and force new notes to open in a new tab",
+        "Added tab management shortcuts: Ctrl+W to close, Ctrl+Tab to cycle",
+        "Editor tags and floating action headers now dynamically switch places if auto text-direction detects RTL languages",
+        "Improved visuals and styling of note tabs"
+      ],
+      "fixes": [
+        "Selecting a note tab no longer changes the folder view selection in the sidebar"
+      ]
+    },
+    "mobile": {
+      "features": [],
+      "fixes": [
+        "Fixed an issue with block LaTeX insertion where deleted formulas kept returning in the math input"
+      ]
+    }
   }
 };

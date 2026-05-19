@@ -53,6 +53,9 @@ export function Header({ stars }: HeaderProps) {
             <Link href="/#faq" className="text-muted-foreground transition-colors hover:text-foreground">
               FAQ
             </Link>
+            <Link href="/changelog" className="text-muted-foreground transition-colors hover:text-foreground">
+              Changelog
+            </Link>
           </nav>
         </div>
 
