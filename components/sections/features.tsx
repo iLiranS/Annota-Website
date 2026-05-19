@@ -1,273 +1,296 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import { motion, useScroll, AnimatePresence, useMotionValueEvent } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 import { cn } from "@/lib/utils"
-import { LucideIcon, FileText, Bot, History, ShieldAlert, Heart } from "lucide-react"
 import Image from "next/image"
+import {
+  FolderTree,
+  Files,
+  Sparkles,
+  BrainCircuit,
+  Images,
+  FileText,
+  Lock,
+  MonitorSmartphone,
+  Share,
+  History,
+  Network,
+  Terminal,
+  LucideIcon
+} from "lucide-react"
 
-interface Feature {
+interface MainFeatureItem {
+  id: string
+  title: string
+  icon: LucideIcon
+  imageUrl: string
+  colorClass: string
+}
+
+interface SpecialFeatureItem {
   id: string
   title: string
   description: string
   icon: LucideIcon
-  videoUrl?: string
-  imageUrl?: string
-  color: string
+  colorClass: string
 }
 
-const features: Feature[] = [
+// ─── Main grid features (9 items) ─────────────────────────────────────────────
+const mainFeatures: MainFeatureItem[] = [
   {
     id: "editor",
-    title: "Powerful Editor",
-    description: "Embed images, PDFs, tables, LaTeX, FlashCards, Code and more in a distraction-free environment. Everything you need to capture complex ideas with ease. All wrapped in an ultra-fast and smooth UI.",
+    title: "Rich Editor",
     icon: FileText,
-    videoUrl: "/assets/features/editor.mp4",
-    color: "text-purple-500"
+    imageUrl: "/assets/features/rich_editor.webp",
+    colorClass: "text-purple-400 bg-purple-500/10 border-purple-500/20 group-hover:border-purple-500/40",
+  },
+  {
+    id: "organization",
+    title: "Organization",
+    icon: FolderTree,
+    imageUrl: "/assets/features/tabs.gif",
+    colorClass: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20 group-hover:border-emerald-500/40",
+  },
+  {
+    id: "customization",
+    title: "Customization",
+    icon: Files,
+    imageUrl: "/assets/features/customization.gif",
+    colorClass: "text-blue-400 bg-blue-500/10 border-blue-500/20 group-hover:border-blue-500/40",
   },
   {
     id: "ai",
-    title: "AI Assistant",
-    description: "Chat with your notes and folders or use the in-editor assistant for instant help. Supports local Ollama or BYOK for maximum power and absolute privacy.",
-    icon: Bot,
-    videoUrl: "/assets/features/ai.mp4",
-    color: "text-orange-500"
+    title: "AI",
+    icon: Sparkles,
+    imageUrl: "/assets/features/ai.gif",
+    colorClass: "text-amber-400 bg-amber-500/10 border-amber-500/20 group-hover:border-amber-500/40",
   },
   {
-    id: "version",
-    title: "Total Continuity",
-    description: "Instant recovery with version history and safety-first deletion. Your thoughts are safe with Annota, always.",
+    id: "flashcards",
+    title: "Flashcards",
+    icon: BrainCircuit,
+    imageUrl: "/assets/features/flashcards.gif",
+    colorClass: "text-rose-400 bg-rose-500/10 border-rose-500/20 group-hover:border-rose-500/40",
+  },
+  {
+    id: "gallery",
+    title: "Image Gallery",
+    icon: Images,
+    imageUrl: "/assets/features/gallery.webp",
+    colorClass: "text-pink-400 bg-pink-500/10 border-pink-500/20 group-hover:border-pink-500/40",
+  },
+  {
+    id: "syncing",
+    title: "Cross-Device Syncing",
+    icon: MonitorSmartphone,
+    imageUrl: "/assets/features/sync.webp",
+    colorClass: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20 group-hover:border-cyan-500/40",
+  },
+  {
+    id: "history",
+    title: "Version History",
     icon: History,
     imageUrl: "/assets/features/version.webp",
-    color: "text-pink-500"
+    colorClass: "text-indigo-400 bg-indigo-500/10 border-indigo-500/20 group-hover:border-indigo-500/40",
   },
   {
-    id: "privacy",
-    title: "Absolute Privacy",
-    description: "Full offline capability with E2E encryption. Your data, your keys. The server sees absolutely nothing by design.",
-    icon: ShieldAlert,
-    imageUrl: "/assets/features/privacy.webp",
-    color: "text-emerald-500"
-  },
-  {
-    id: "support",
-    title: "Always Local & Free",
-    description: "All features are 100% free for local use on both mobile and desktop. Support our development with a subscription to sync your content across devices.",
-    icon: Heart,
-    imageUrl: "/assets/features/support.webp",
-    color: "text-red-500"
+    id: "slash",
+    title: '/ Commands',
+    icon: Terminal,
+    imageUrl: "/assets/features/slash.gif",
+    colorClass: "text-violet-400 bg-violet-500/10 border-violet-500/20 group-hover:border-violet-500/40",
   },
 ]
 
-// Fetch video into a blob URL so the browser streams it with full priority
-// and it's instantly available from memory on playback.
-function useBlobVideos(urls: string[]) {
-  const [blobUrls, setBlobUrls] = useState<Record<string, string>>({})
-  const [loadedCount, setLoadedCount] = useState(0)
+// ─── Special features below (3 items, minimal description, no images) ─────────
+const specialFeatures: SpecialFeatureItem[] = [
+  {
+    id: "privacy",
+    title: "E2E Encrypted",
+    description: "On device and also on the server - server see nothing.",
+    icon: Lock,
+    colorClass: "text-teal-400 bg-teal-500/10 border-teal-500/20 group-hover:border-teal-500/40",
+  },
+  {
+    id: "linked",
+    title: "Linked Notes",
+    description: "Can link between notes or specific blocks inside them.",
+    icon: Network,
+    colorClass: "text-fuchsia-400 bg-fuchsia-500/10 border-fuchsia-500/20 group-hover:border-fuchsia-500/40",
+  },
+  {
+    id: "exports",
+    title: "Exports",
+    description: "PDF / HTML / Markdown",
+    icon: Share,
+    colorClass: "text-orange-400 bg-orange-500/10 border-orange-500/20 group-hover:border-orange-500/40",
+  },
+]
 
-  useEffect(() => {
-    if (urls.length === 0) return
-    const objectUrls: string[] = []
-
-    const fetchVideo = async (url: string, index: number) => {
-      try {
-        // Stagger fetches slightly so the first video wins bandwidth
-        if (index > 0) await new Promise(r => setTimeout(r, index * 300))
-        const res = await fetch(url)
-        const blob = await res.blob()
-        const objectUrl = URL.createObjectURL(blob)
-        objectUrls.push(objectUrl)
-        setBlobUrls(prev => ({ ...prev, [url]: objectUrl }))
-        setLoadedCount(prev => prev + 1)
-      } catch {
-        // Fall back to the original URL silently
-        setBlobUrls(prev => ({ ...prev, [url]: url }))
-      }
-    }
-
-    urls.forEach((url, i) => fetchVideo(url, i))
-
-    return () => {
-      objectUrls.forEach(u => URL.revokeObjectURL(u))
-    }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  return { blobUrls, loadedCount }
+const containerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.05 } },
 }
 
-export function FeatureSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [activeIndex, setActiveIndex] = useState(0)
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+}
 
-  const videoUrls = features.filter(f => f.videoUrl).map(f => f.videoUrl!)
-  const { blobUrls, loadedCount } = useBlobVideos(videoUrls)
+// ── Sub-components ─────────────────────────────────────────────────────────────
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  })
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // Use Math.round to change the active index halfway through the scroll section
-    // for a more responsive feel.
-    const index = Math.max(0, Math.min(Math.round(latest * (features.length - 1)), features.length - 1))
-    if (index !== activeIndex) setActiveIndex(index)
-  })
-
+function BrowserChrome({ children }: { children: React.ReactNode }) {
   return (
-    <section
-      id="features"
-      ref={containerRef}
-      className="relative h-[300vh] bg-background mb-20 lg:mb-0"
-    >
-      {/* Sticky visual container */}
-      <div className="sticky top-0 pt-16 bg-background lg:bg-transparent lg:pt-0 lg:h-screen w-full overflow-hidden z-30 lg:z-10">
-        <div className="flex h-full w-full flex-col lg:flex-row">
-          {/* Left: visual */}
-          <div className="w-full lg:w-3/5 h-full relative flex items-center justify-center p-4 lg:p-12 xl:p-20">
-            <div className="relative w-full aspect-1826/1080 rounded-2xl lg:rounded-3xl bg-muted/20 border border-border/50 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)] lg:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden">              <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 w-full h-full"
-              >
-                <FeatureVisual
-                  url={
-                    features[activeIndex].videoUrl
-                      ? (blobUrls[features[activeIndex].videoUrl!] ?? features[activeIndex].videoUrl!)
-                      : (features[activeIndex].imageUrl ?? "")
-                  }
-                  type={features[activeIndex].videoUrl ? "video" : "image"}
-                  title={features[activeIndex].title}
-                  // Don't show the video element until its blob is ready,
-                  // avoids a stalled <video> pointing at a slow remote URL.
-                  ready={
-                    !features[activeIndex].videoUrl ||
-                    !!blobUrls[features[activeIndex].videoUrl!]
-                  }
-                />
-              </motion.div>
-            </AnimatePresence>
-            </div>
-
-            {/* Ambient glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-[80px] lg:blur-[120px] rounded-full -z-10" />
-          </div>
-
-          {/* Right: desktop spacer */}
-          <div className="hidden lg:block w-2/5 h-full" />
-        </div>
+    <div className="relative rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950 flex flex-col aspect-video w-full mt-1.5 sm:mt-2 shrink-0">
+      {/* Traffic lights */}
+      <div className="flex items-center gap-1 px-2.5 py-1.5 border-b border-zinc-850 bg-zinc-900/60 shrink-0">
+        <span className="w-1.5 h-1.5 rounded-full bg-red-500/40" />
+        <span className="w-1.5 h-1.5 rounded-full bg-yellow-500/40" />
+        <span className="w-1.5 h-1.5 rounded-full bg-green-500/40" />
       </div>
-
-      {/* Scrolling feature text */}
-      <div className="absolute top-0 left-0 w-full z-20 pointer-events-none">
-        <div className="container mx-auto px-6 flex flex-col lg:items-end">
-          <div className="h-[40vh] lg:h-[20vh]" />
-
-          {features.map((feature, index) => (
-            <div
-              key={feature.id}
-              className="h-[60vh] lg:h-[50vh] w-full lg:w-2/5 flex flex-col justify-start pointer-events-auto"
-            >
-              <motion.div
-                initial={{ opacity: 0.1, y: 20, scale: 0.95 }}
-                animate={{
-                  opacity: activeIndex === index ? 1 : 0.1,
-                  y: activeIndex === index ? 0 : 20,
-                  scale: activeIndex === index ? 1 : 0.95
-                }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className={cn(
-                  "flex flex-col gap-4 lg:gap-6 p-6 lg:p-0 rounded-3xl lg:rounded-none",
-                  "bg-card/80 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none border border-border/50 lg:border-none shadow-2xl lg:shadow-none"
-                )}
-              >
-                <div className="flex items-center gap-4">
-                  <div className={cn(
-                    "p-2.5 lg:p-3 rounded-xl lg:rounded-2xl bg-muted/50 transition-colors duration-500 shadow-sm",
-                    activeIndex === index && "bg-primary/10 " + feature.color
-                  )}>
-                    <feature.icon className="w-6 h-6 lg:w-8 lg:h-8" strokeWidth={2.5} />
-                  </div>
-                  <h3 className="text-2xl lg:text-4xl xl:text-5xl font-black tracking-tighter">
-                    {feature.title}
-                  </h3>
-                </div>
-                <p className="text-base lg:text-xl text-muted-foreground leading-relaxed max-w-md">
-                  {feature.description}
-                </p>
-              </motion.div>
-            </div>
-          ))}
-
-          <div className="h-[25vh]" />
-        </div>
-      </div>
-
-      {/* Scroll progress bar */}
-      <motion.div
-        className="fixed left-0 bottom-0 h-1 bg-primary z-50"
-        style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
-      />
-    </section>
+      <div className="relative flex-1 min-h-0 overflow-hidden bg-zinc-950">{children}</div>
+    </div>
   )
 }
 
-function FeatureVisual({
-  url,
-  type,
-  title,
-  ready,
-}: {
-  url: string
-  type: "video" | "image"
-  title: string
-  ready: boolean
-}) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  // When the blob URL arrives, make sure the video plays
-  useEffect(() => {
-    if (type === "video" && ready && videoRef.current) {
-      videoRef.current.load()
-      videoRef.current.play().catch(() => { })
-    }
-  }, [ready, url, type])
-
+function FeatureImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="relative w-full h-full flex items-center justify-center bg-black/5 overflow-hidden">
-      {/* Placeholder — shown while blob isn't ready yet */}
-      {!ready && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex flex-col items-center gap-4 opacity-10 select-none">
-            <div className="text-8xl font-black uppercase tracking-widest -rotate-12">
-              Annota
-            </div>
-            <div className="text-2xl font-bold tracking-widest uppercase">{title}</div>
-          </div>
-        </div>
-      )}
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 25vw"
+      className="object-cover transition-transform duration-500 group-hover:scale-105"
+      unoptimized
+    />
+  )
+}
 
-      {type === "video" && ready ? (
-        <video
-          ref={videoRef}
-          src={url}
-          autoPlay
-          muted
-          loop
-          playsInline
-          controls
-          className="w-full h-full object-contain"
-        />
-      ) : type === "image" ? (
-        <Image src={url} alt={title} fill className="object-cover" unoptimized />
-      ) : null}
-
-      {/* Glossy overlay */}
-      <div className="absolute inset-0 pointer-events-none bg-linear-to-tr from-white/5 to-transparent" />
+function IconBadge({ icon: Icon, colorClass }: { icon: LucideIcon; colorClass: string }) {
+  return (
+    <div className={cn("p-2 rounded-xl border transition-all duration-300 shrink-0", colorClass)}>
+      <Icon className="w-4 h-4" strokeWidth={2.5} />
     </div>
+  )
+}
+
+// ── Main section ───────────────────────────────────────────────────────────────
+
+export function FeatureSection() {
+  return (
+    <section id="features" className="py-20 sm:py-28 bg-background relative overflow-hidden">
+      {/* Ambient blobs */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 blur-[140px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-indigo-500/5 blur-[140px] rounded-full pointer-events-none -z-10" />
+
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Header */}
+        <div className="mb-16 sm:mb-20 text-center max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-block rounded-full bg-primary/10 border border-primary/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary mb-4"
+          >
+            Powerful Core Features
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter"
+          >
+            Engineered for <span className="text-primary italic font-serif">Deep Thinking</span>.
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-4 sm:mt-6 text-base sm:text-lg lg:text-xl text-muted-foreground leading-relaxed"
+          >
+            A high-performance personal workspace containing all the tools you need to capture, connect, study, and protect your digital mind.
+          </motion.p>
+        </div>
+
+        {/* ── Main Core Features Grid (Normal grid, 16:9 images) ─────────────── */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+        >
+          {mainFeatures.map((feature) => (
+            <motion.div
+              key={feature.id}
+              variants={itemVariants}
+              className={cn(
+                "group relative overflow-hidden rounded-2xl border border-border/60 bg-card/30 backdrop-blur-md p-4 sm:p-5 flex flex-col gap-3.5 justify-between",
+                "transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5"
+              )}
+            >
+              <div className="absolute -inset-px rounded-2xl bg-linear-to-br from-primary/8 via-transparent to-primary/4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              <div className="flex items-center gap-2.5 shrink-0">
+                <IconBadge icon={feature.icon} colorClass={feature.colorClass} />
+                <h3 className="text-sm sm:text-base font-black tracking-tight text-foreground">{feature.title}</h3>
+              </div>
+
+              <BrowserChrome>
+                <FeatureImage src={feature.imageUrl} alt={feature.title} />
+              </BrowserChrome>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* ── Separate Section Below (Exports, E2E Encrypted, Linked Notes) ───── */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="mt-8 sm:mt-16 pt-8  border-t border-white/8 relative"
+        >
+          {/* Decorative glowing gradient line */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-linear-to-r from-transparent via-primary/30 to-transparent" />
+
+          {/* Centered muted text on the divider line */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 bg-background text-[10px] sm:text-xs uppercase tracking-widest text-muted-foreground/60 font-semibold select-none whitespace-nowrap">
+            And much more
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            {specialFeatures.map((feature) => (
+              <motion.div
+                key={feature.id}
+                variants={itemVariants}
+                className={cn(
+                  "group relative overflow-hidden rounded-2xl border border-border/60 bg-card/30 backdrop-blur-md p-4 sm:p-5 flex flex-col gap-2.5 min-h-[110px] sm:min-h-[130px] justify-center",
+                  "transition-all duration-300 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5"
+                )}
+              >
+                <div className="absolute -inset-px rounded-2xl bg-linear-to-br from-primary/8 via-transparent to-primary/4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                <div className="flex items-center gap-2.5">
+                  <IconBadge icon={feature.icon} colorClass={feature.colorClass} />
+                  <h3 className="text-xs sm:text-sm font-black tracking-tight text-foreground">{feature.title}</h3>
+                </div>
+
+                <p className="text-[10px] sm:text-xs leading-relaxed text-muted-foreground font-medium pl-0.5">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
   )
 }
