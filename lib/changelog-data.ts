@@ -214,5 +214,38 @@ export const changelogData = {
         "Fixed an issue where deleted notes could still be editable and displayed incorrect menu options"
       ]
     }
+  },
+  "0.5.3": {
+    "date": "2026-05-22",
+    "title": "PDF Export & Performance Polish",
+    "common": {
+      "features": [
+        "Added copy-paste support for PDF files (inserts as a PDF block)",
+        "Improved export service to match exact document styles",
+        "Added links and backlinks display in Note Info",
+        "Search displays 'latest notes' by default if input is empty"
+      ],
+      "fixes": [
+        "Fixed blockId and elementId mismatch on mobile and desktop"
+      ]
+    },
+    "desktop": {
+      "features": [
+        "Added daily cache cleaner for PDF exports",
+        "Implemented note content debouncing to improve performance and reduce writes",
+        "Added right-click to copy search media"
+      ],
+      "fixes": [
+        "Reduced gap between pinned and regular notes in the notes list",
+        "Fixed Windows 'Get' link in update available notification",
+        "Adjusted '+' tab button position closer to the last tab"
+      ]
+    },
+    "mobile": {
+      "features": [
+        "Added media library files copy options"
+      ],
+      "fixes": []
+    }
   }
 };
