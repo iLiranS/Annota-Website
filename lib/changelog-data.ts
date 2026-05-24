@@ -247,5 +247,41 @@ export const changelogData = {
       ],
       "fixes": []
     }
+  },
+  "0.5.4": {
+    "date": "2026-05-24",
+    "title": "Navigation & Clipboard Optimizations",
+    "common": {
+      "features": [
+        "Optimized image copy system",
+        "Optimized task list items rendering size"
+      ],
+      "fixes": [
+        "Fixed nested folders display in trash view",
+        "Fixed markdown export formatting"
+      ]
+    },
+    "desktop": {
+      "features": [
+        "Reworked navigation to track note history exclusively",
+        "Moved sidebar footer controls to main navbar and adjusted sidebar toggle spacing",
+        "Repositioned floating note actions to a fixed vertical layout",
+        "Polished notebook header styling and flashcard interaction style",
+        "Reduced toolbar button size and added more vertical padding to the toolbar container",
+        "Compacted note info panel and hid title on macOS standalone windows",
+        "Show quick access on every note tab"
+      ],
+      "fixes": [
+        "Fixed active tag item using accent background color instead of primary/10",
+        "Fixed note opened via tags redirecting to its folder instead of staying in tags view"
+      ]
+    },
+    "mobile": {
+      "features": [],
+      "fixes": [
+        "Fixed missing back button in trash folder navigation",
+        "Fixed incorrect media/content selector display during note search"
+      ]
+    }
   }
 };
