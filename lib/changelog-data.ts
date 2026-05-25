@@ -283,5 +283,32 @@ export const changelogData = {
         "Fixed incorrect media/content selector display during note search"
       ]
     }
+  },
+  "0.5.5": {
+    "date": "2026-05-25",
+    "title": "Sidebar Drag & Location Safety",
+    "common": {
+      "features": [
+        "Improved note creation location safety"
+      ],
+      "fixes": [
+        "Fixed placeholder of new note not showing"
+      ]
+    },
+    "desktop": {
+      "features": [
+        "Enabled app dragging using the sidebar drag area",
+        "Added context menu for folder tabs to create notes in the root folder"
+      ],
+      "fixes": [
+        "Fixed bug preventing creation or viewing of notes in the root (Annota) folder"
+      ]
+    },
+    "mobile": {
+      "features": [],
+      "fixes": [
+        "Fixed bug preventing editing of empty or newly created notes"
+      ]
+    }
   }
 };
