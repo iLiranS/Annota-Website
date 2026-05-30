@@ -310,5 +310,28 @@ export const changelogData = {
         "Fixed bug preventing editing of empty or newly created notes"
       ]
     }
+  },
+  "0.5.6": {
+    "date": "2026-05-30",
+    "title": "Editor Polish & Tab Improvements",
+    "common": {
+      "features": [
+        "Improved editor styling (less rounded, larger code block text), better export matching, and refined back/forward link visuals"
+      ],
+      "fixes": []
+    },
+    "desktop": {
+      "features": [
+        "Added RTL support for editor block drag handles",
+        "Polished home page dashboard and editor note options button",
+        "Note tabs now display associated folders with support for clicking to reveal in sidebar"
+      ],
+      "fixes": []
+    },
+    "mobile": {
+      "features": [],
+      "fixes": []
+    }
   }
 };
+

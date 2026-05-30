@@ -148,7 +148,7 @@ const specialFeatures: SpecialFeatureItem[] = [
   {
     id: "linked",
     title: "Linked Notes",
-    description: "Can link between notes or specific blocks inside them.",
+    description: "link between notes or specific blocks inside them and get back links.",
     icon: Network,
     colorClass: "text-fuchsia-400 bg-fuchsia-500/10 border-fuchsia-500/20 group-hover:border-fuchsia-500/40",
     hoverClass: "hover:border-fuchsia-500/30 hover:shadow-fuchsia-500/5",
