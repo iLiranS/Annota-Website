@@ -332,6 +332,35 @@ export const changelogData = {
       "features": [],
       "fixes": []
     }
+  },
+  "1.0.0": {
+    "date": "2026-05-31",
+    "title": "Official 1.0.0 Milestone",
+    "common": {
+      "features": [
+        "We are thrilled to officially reach the version 1.0.0 milestone! 🎉",
+        "Reengineered the AI context compression system to be exceptionally reliable, using a token-friendly system that gracefully handles all scenarios"
+      ],
+      "fixes": []
+    },
+    "desktop": {
+      "features": [
+        "Polished and improved the home screen dashboard",
+        "Added a guest name greeting on the home page dashboard"
+      ],
+      "fixes": [
+        "Fixed an issue where the chat message scrollbar was unclickable due to the Tauri window drag overlay"
+      ]
+    },
+    "mobile": {
+      "features": [
+        "Designed a beautiful home screen that perfectly matches the desktop dashboard—showcasing recent notes, quick actions, recent media, and activity"
+      ],
+      "fixes": [
+        "Resolved an issue where denying camera permissions once would permanently block the app from using the camera in the future"
+      ]
+    }
   }
 };
+
 
