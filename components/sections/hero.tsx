@@ -1,34 +1,20 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Shield, PenLine, Monitor } from "lucide-react"
-import { motion, Variants, useScroll, useTransform } from "framer-motion"
-import { useState, useEffect, useRef } from "react"
-import { FaDiscord, FaApple, FaGooglePlay, FaWindows, FaLinux } from "react-icons/fa"
+import { Shield, Code, Sparkles } from "lucide-react"
+import { motion, Variants } from "framer-motion"
+import { useState, useEffect } from "react"
+import { FaApple, FaGooglePlay, FaWindows, FaLinux } from "react-icons/fa"
 import { getPlatform, type Platform } from "@/utils/getPlatform"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { useTheme } from "next-themes"
-import { useMediaQuery } from "@/hooks/use-media-query"
 
 export function Hero() {
   const [mounted, setMounted] = useState(false)
   const [platform, setPlatform] = useState<Platform | null>(null)
   const theme = useTheme()
-  const sectionRef = useRef<HTMLElement>(null)
-
-  const isDesktop = useMediaQuery("(min-width: 768px)")
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  })
-
-  // Scroll-based reveal for the device stack - Only on Desktop
-  const stackY = useTransform(scrollYProgress, [0, 0.5], [0, isDesktop ? -40 : 0])
-  const desktopRotateX = useTransform(scrollYProgress, [0, 1], [0, isDesktop ? 5 : 0])
-  const mobileTranslateX = useTransform(scrollYProgress, [0, 1], [0, isDesktop ? 10 : 0])
-  const mobileTranslateY = useTransform(scrollYProgress, [0, 1], [0, isDesktop ? -80 : 0])
+  const isDark = mounted && theme.resolvedTheme === 'dark'
 
   useEffect(() => {
     setMounted(true)
@@ -66,7 +52,6 @@ export function Hero() {
 
   return (
     <section
-      ref={sectionRef}
       className="relative h-fit w-full bg-background flex flex-col items-center pt-8 sm:pt-12 lg:pt-16 pb-0 px-4"
     >
 
@@ -88,20 +73,15 @@ export function Hero() {
             <motion.div className="flex items-center justify-center p-1 rounded-full sm:rounded-2xl bg-muted/30 border border-border/50 w-full sm:w-auto overflow-hidden">
               {/* Trust & Community Badges grouped together */}
               <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 whitespace-nowrap">
-                <Shield size={14} className="text-primary" />
-                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-foreground/70">Local-First</span>
+                <Code size={14} className="text-primary" />
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-foreground/70">Open Source</span>
               </div>
-              <a
-                href="https://discord.gg/dG5nNJPDAh"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 bg-primary text-white rounded-full sm:rounded-xl shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95 whitespace-nowrap"
-              >
-                <FaDiscord size={14} className="text-white" />
-                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide">Discord</span>
-              </a>
+              <div className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 bg-primary/10 text-primary rounded-full sm:rounded-xl border border-primary/20 whitespace-nowrap">
+                <Sparkles size={14} className="text-primary" />
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide">100% Free</span>
+              </div>
               <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 whitespace-nowrap">
-                <PenLine size={14} className="text-primary" />
+                <Shield size={14} className="text-primary" />
                 <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-foreground/70">Encrypted</span>
               </div>
             </motion.div>
@@ -176,7 +156,6 @@ export function Hero() {
 
         {/* Product Hub Visualization - Cohesive Desktop & Mobile Stack */}
         <motion.div
-          style={{ y: stackY }}
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -186,7 +165,6 @@ export function Hero() {
 
             {/* Desktop Preview - Clean, borderless */}
             <motion.div
-              style={{ rotateX: desktopRotateX }}
               className="relative w-full lg:w-[85%]   aspect-16/10 overflow-hidden"
             >
               <Image
@@ -202,17 +180,56 @@ export function Hero() {
 
             {/* Mobile Preview Frame - Overlapping Desktop */}
             <motion.div
-              style={{ x: mobileTranslateX, y: mobileTranslateY }}
-              className="absolute right-3 sm:right-4 bottom-[-15%] sm:bottom-[-10%] w-24 sm:w-[28%] lg:w-[22%] aspect-9/19.5 rounded-[1rem] sm:rounded-[2rem] overflow-hidden shadow-[0_50px_80px_-15px_rgba(0,0,0,0.4)] z-30 ring-2 ring-border/50"
+              className={cn(
+                "absolute right-3 sm:right-6 bottom-[-15%] sm:bottom-[-10%]",
+                "w-28 sm:w-[28%] lg:w-[22%]",
+                "z-30 transition-all duration-300"
+              )}
             >
-              <Image
-                src={mounted && theme.resolvedTheme === 'dark' ? "/assets/mobile/preview_dark.webp" : "/assets/mobile/preview_light.webp"}
-                alt="Annota Mobile"
-                fill
-                className="object-cover"
-                priority
-                unoptimized
-              />
+              {/* Premium Phone Frame Container */}
+              <div className={cn(
+                "relative w-full aspect-1179/2270 rounded-[1.5rem] sm:rounded-[2.5rem] p-[3px] sm:p-[8px] border transition-all duration-300",
+                isDark
+                  ? "bg-zinc-900 border-zinc-800 shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_50px_100px_-20px_rgba(0,0,0,0.6),0_30px_60px_-30px_rgba(0,0,0,0.7)] ring-1 ring-white/10"
+                  : "bg-zinc-200 border-zinc-300 shadow-[0_0_0_1px_rgba(0,0,0,0.05),0_50px_100px_-20px_rgba(0,0,0,0.15),0_30px_60px_-30px_rgba(0,0,0,0.2)] ring-1 ring-black/5"
+              )}>
+                {/* Silent/Action Button */}
+                <div className={cn("absolute left-[-2px] top-[15%] w-[2px] h-[4%] rounded-l-[1px] transition-colors duration-300", isDark ? "bg-zinc-700" : "bg-zinc-400")} />
+                {/* Volume Up */}
+                <div className={cn("absolute left-[-2px] top-[22%] w-[2px] h-[7%] rounded-l-[1px] transition-colors duration-300", isDark ? "bg-zinc-700" : "bg-zinc-400")} />
+                {/* Volume Down */}
+                <div className={cn("absolute left-[-2px] top-[31%] w-[2px] h-[7%] rounded-l-[1px] transition-colors duration-300", isDark ? "bg-zinc-700" : "bg-zinc-400")} />
+                {/* Power Button */}
+                <div className={cn("absolute right-[-2px] top-[25%] w-[2px] h-[10%] rounded-r-[1px] transition-colors duration-300", isDark ? "bg-zinc-700" : "bg-zinc-400")} />
+
+                {/* Inner Screen Container */}
+                <div className={cn(
+                  "relative w-full h-full rounded-[1.35rem] sm:rounded-[2.1rem] overflow-hidden z-20 border transition-all duration-300",
+                  isDark ? "bg-zinc-950 border-zinc-950/80" : "bg-white border-zinc-100"
+                )}>
+                  {/* Dynamic Island / Notch */}
+                  <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[32%] h-[3.5%] bg-black rounded-full z-40 flex items-center justify-end px-[4%]">
+                    {/* Camera lens highlight */}
+                    <div className="w-[15%] aspect-square rounded-full bg-[#111] border border-white/5 opacity-80" />
+                  </div>
+
+                  {/* Speaker Ear Piece */}
+                  <div className={cn("absolute top-[1.2%] left-1/2 -translate-x-1/2 w-[15%] h-px rounded-full z-40 transition-colors duration-300", isDark ? "bg-zinc-800" : "bg-zinc-300")} />
+
+                  {/* Screenshot Image */}
+                  <Image
+                    src={isDark ? "/assets/mobile/preview_dark.webp" : "/assets/mobile/preview_light.webp"}
+                    alt="Annota Mobile"
+                    fill
+                    className="object-cover"
+                    priority
+                    unoptimized
+                  />
+
+                  {/* Glossy Overlay / Glare Reflection */}
+                  <div className="absolute inset-0 pointer-events-none z-30 bg-linear-to-tr from-transparent via-white/3 to-white/8" />
+                </div>
+              </div>
             </motion.div>
 
             {/* Ambient Lighting */}

@@ -20,6 +20,14 @@ const faqs = [
     answer: "Support for PDF 📄, images 🖼️, beautiful editor ✨ including customizable tables 📊, flashcards 🗂️, code blocks 💻, quotes, details, LaTeX and more. Alongside AI features 🤖 such as in-editor assistant and AI chat as well that can look for specific folder / notes."
   },
   {
+    question: "Does Annota work completely offline?",
+    answer: "Yes, absolutely! Annota is built local-first, meaning all your notes, folders, flashcards, and search features work 100% offline without needing any active internet connection. Your changes are saved locally instantly and will sync seamlessly in the background once you are back online."
+  },
+  {
+    question: "Can I import and export my notes?",
+    answer: "Yes! Annota supports importing notes from standard Markdown (.md) format, making migration from other tools seamless. You can also export your notes at any time to either Markdown (.md) or professionally formatted PDF files."
+  },
+  {
     question: "Who is it for?",
     answer: "Annota is designed for anyone who needs a powerful, private digital mind. It's perfect for students 🎓 who need to annotate PDFs and study with flashcards, programmers 💻 who want clean code blocks and an AI-powered coding assistant, teachers 🍎 who need to organize complex information into beautiful tables and notes, and professionals 💼 who value data privacy and local-first performance."
   },
@@ -32,6 +40,18 @@ const faqs = [
     answer: "If you choose to sync your data, your privacy is our absolute priority. All your data is stored using Supabase with true End-to-End (E2E) encryption. We utilize a zero-knowledge architecture, meaning your encryption keys remain strictly on your device. We cannot see your data, and even Supabase cannot access or read it. You are the only one who holds the key to your content. You can always export your notes from your device to different formats as well"
   },
   {
+    question: "Which AI models does Annota support?",
+    answer: "We support a wide array of leading AI providers including OpenAI, Gemini, and Anthropic. Additionally, for maximum privacy, Annota integrates with Ollama, allowing you to run fully local, offline AI models on your own machine without sending any data to the cloud."
+  },
+  {
+    question: "How does Annota handle my data when using AI features?",
+    answer: "Your privacy is our utmost priority. Only the notes that you explicitly choose as context in Annota will be exposed to the selected AI provider. Outside of the notes you actively share as context, your data is 100% private and encrypted both locally on your device and outside of it (with the exception of local files, such as PDFs or images, which are stored unencrypted on your device's local filesystem)."
+  },
+  {
+    question: "Is Annota free to use?",
+    answer: "Yes! Annota is 100% free to use if you choose to keep your data local-only on your device. We also offer cloud synchronization for free for up to 50 notes. If you wish to synchronize more than 50 notes across your devices, an active subscription is required."
+  },
+  {
     question: "What happens if I cancel my subscription?",
     answer: "If you cancel, you'll still have full access to your local notes. Your data remains on your device. You'll simply lose access to cloud synchronization and premium storage limits once your billing cycle ends."
   },
@@ -39,7 +59,6 @@ const faqs = [
     question: "How long is my data stored if I'm inactive?",
     answer: "For non-pro (Free) users, cloud-synced data is deleted if the account remains inactive for more than 90 consecutive days. This help us maintain a fast and efficient service for everyone. Note that this only applies to data on our servers; your local notes on your device are never deleted by us."
   },
-
 ]
 
 export function FaqSection() {
@@ -50,7 +69,7 @@ export function FaqSection() {
   }, [])
 
   return (
-    <section id="faq" className="lg:h-dvh py-20 sm:py-32 bg-background relative overflow-hidden flex flex-col justify-center">
+    <section id="faq" className="min-h-screen py-20  bg-background relative overflow-hidden flex flex-col justify-center">
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
