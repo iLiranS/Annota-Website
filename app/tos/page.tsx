@@ -6,7 +6,7 @@ export default function TermsOfServicePage() {
 
         <div className="prose prose-slate dark:prose-invert max-w-none space-y-6 text-muted-foreground">
           <section>
-            <p>Last Updated: March 24, 2026</p>
+            <p>Last Updated: June 4, 2026</p>
           </section>
 
           <section>
@@ -63,6 +63,12 @@ export default function TermsOfServicePage() {
               <div>
                 <h3 className="text-lg font-medium text-foreground">Data Retention (Inactive Accounts)</h3>
                 <p>For non-pro (Free) users, cloud-synced data is subject to deletion if the account remains inactive for more than 90 consecutive days. We reserve the right to delete all encrypted data stored on our servers for such inactive accounts to optimize resources. This policy does not apply to active Pro subscribers or any data stored locally on your devices.</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-foreground">AI Features</h3>
+                <p>
+                  Annota utilizes third-party AI services (such as OpenAI, Anthropic, and Gemini) to provide text optimization features. These features are optional and disabled by default. If enabled, data is strictly transmitted to process your user-initiated requests, exposed only to the specific notes you select as context, and handled according to the respective AI service&apos;s data privacy policy.
+                </p>
               </div>
             </div>
           </section>

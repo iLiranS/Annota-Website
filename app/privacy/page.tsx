@@ -44,6 +44,14 @@ export default function PrivacyPage() {
               We use RevenueCat to manage subscriptions and handle transactions. RevenueCat collects certain information such as your country, device platform, and last-seen activity timestamps to facilitate subscription management and service usage. We do not store or process your payment details directly.
             </p>
           </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold text-foreground">AI Features</h2>
+            <p>
+              Annota utilizes third-party AI services (such as OpenAI, Anthropic, and Gemini) to provide text optimization features. These features are optional and disabled by default. If you choose to enable AI features, data is strictly transmitted to process your user-initiated requests, exposed only to the selection of notes you choose to include as context, and handled according to the respective AI service&apos;s data privacy policy.
+            </p>
+          </section>
+
           <section>
             <h2 className="text-2xl font-semibold text-foreground">Data & Account Deletion</h2>
             <div className="space-y-4">
@@ -64,7 +72,7 @@ export default function PrivacyPage() {
           </section>
 
           <div className="pt-8 border-t text-sm">
-            <p>Last Updated: March 24, 2026</p>
+            <p>Last Updated: June 4, 2026</p>
             <p className="mt-2">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:support@annota.online" className="text-primary hover:underline">support@annota.online</a>.</p>
           </div>
         </div>
