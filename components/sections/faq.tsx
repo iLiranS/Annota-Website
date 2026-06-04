@@ -28,8 +28,8 @@ const faqs = [
     answer: "Yes! Annota supports importing notes from standard Markdown (.md) format, making migration from other tools seamless. You can also export your notes at any time to either Markdown (.md) or professionally formatted PDF files."
   },
   {
-    question: "Who is it for?",
-    answer: "Annota is designed for anyone who needs a powerful, private digital mind. It's perfect for students 🎓 who need to annotate PDFs and study with flashcards, programmers 💻 who want clean code blocks and an AI-powered coding assistant, teachers 🍎 who need to organize complex information into beautiful tables and notes, and professionals 💼 who value data privacy and local-first performance."
+    question: "Is Annota for me?",
+    answer: "Annota is designed for anyone who needs a powerful, private digital mind. It's perfect for students 🎓 who need to organized course structure and study with flashcards, programmers 💻 who want clean code blocks and an AI-powered coding assistant, teachers 🍎 who need to organize complex information into beautiful tables and notes, and professionals 💼 who value data privacy and local-first performance."
   },
   {
     question: "What platforms does Annota support?",

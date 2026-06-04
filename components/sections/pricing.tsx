@@ -89,7 +89,7 @@ export function PricingSection() {
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <Check className="h-3 w-3 text-primary" />
                       </div>
-                      Encrypted Local Storage
+                      Encrypted Local Data
                     </li>
                     <li className="flex items-center gap-3">
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -249,7 +249,9 @@ export function PricingSection() {
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <Check className="h-3 w-3 text-primary" />
                       </div>
-                      Unlimited Notes and data
+                      <p>
+                        Unlimited Notes <span className="text-primary">*</span>
+                      </p>
                     </li>
                     <li className="flex items-center gap-3 font-semibold">
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -257,23 +259,11 @@ export function PricingSection() {
                       </div>
                       2.5GB Secured Storage
                     </li>
-                    <li className="flex items-center gap-3 font-semibold text-foreground">
-                      <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                        <Check className="h-3 w-3 text-primary" />
-                      </div>
-                      Priority Support & Custom Roles
-                    </li>
                     <li className="flex items-center gap-3 font-semibold">
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <Check className="h-3 w-3 text-primary" />
                       </div>
-                      Universal Multi-device Sync
-                    </li>
-                    <li className="flex items-center gap-3 font-semibold">
-                      <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                        <Check className="h-3 w-3 text-primary" />
-                      </div>
-                      Secure Cloud Backup & Recovery
+                      Support the developer :)
                     </li>
                   </ul>
                 </CardContent>
