@@ -94,12 +94,14 @@ export function Hero() {
               className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 w-full relative z-40"
             >
               {[
-                { id: 'macos', name: 'TestFlight', icon: FaApple, label: 'Download from', href: 'https://testflight.apple.com/join/mmgSW44D' },
-                { id: 'windows', name: 'Windows', icon: FaWindows, label: 'Get it for', href: 'https://github.com/iLiranS/Annota/releases/latest' },
-                { id: 'linux', name: 'Linux', icon: FaLinux, label: 'Get it for', href: '#' },
-                { id: 'android', name: 'Google Play', icon: FaGooglePlay, label: 'Available on', href: '#' },
+                platform === 'macos'
+                  ? { id: 'macos' as Platform, name: 'TestFlight', icon: FaApple, label: 'Download from', href: 'https://testflight.apple.com/join/mmgSW44D' }
+                  : { id: 'ios' as Platform, name: 'App Store', icon: FaApple, label: 'Download on', href: 'https://apps.apple.com/us/app/annota-notes/id6761501939' },
+                { id: 'windows' as Platform, name: 'Windows', icon: FaWindows, label: 'Get it for', href: 'https://github.com/iLiranS/Annota/releases/latest' },
+                { id: 'linux' as Platform, name: 'Linux', icon: FaLinux, label: 'Get it for', href: '#' },
+                { id: 'android' as Platform, name: 'Google Play', icon: FaGooglePlay, label: 'Available on', href: '#' },
               ].map((p) => {
-                const isActive = platform === p.id || (p.id === 'macos' && platform === 'ios');
+                const isActive = platform === p.id;
                 const isAvailable = p.href !== '#';
                 const Icon = p.icon;
 
@@ -107,7 +109,7 @@ export function Hero() {
                 const iconClass = cn(
                   "transition-transform group-hover:scale-110",
                   isActive ? "text-white" : "text-foreground/70",
-                  p.id === 'macos' ? "w-6 h-6 sm:w-7 sm:h-7" : "w-5 h-5 sm:w-6 sm:h-6"
+                  p.id === 'macos' || p.id === 'ios' ? "w-6 h-6 sm:w-7 sm:h-7" : "w-5 h-5 sm:w-6 sm:h-6"
                 );
 
                 const buttonContent = (

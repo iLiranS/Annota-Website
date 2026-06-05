@@ -3,12 +3,12 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, ExternalLink } from "lucide-react"
-import { FaDiscord } from "react-icons/fa"
+import { FaDiscord, FaReddit } from "react-icons/fa"
 
 export default function SupportPage() {
   return (
     <div className="container mx-auto px-4 py-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-5xl">
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">How can we help?</h1>
           <p className="mt-4 text-lg text-muted-foreground">
@@ -16,7 +16,7 @@ export default function SupportPage() {
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-3">
           {/* Email Support */}
           <Card className="bg-primary/5 border-primary/20 flex flex-col">
             <CardHeader>
@@ -39,10 +39,13 @@ export default function SupportPage() {
             </CardContent>
           </Card>
 
-          {/* Community Support */}
+          {/* Discord Community */}
           <Card className="flex flex-col">
             <CardHeader>
-              <CardTitle>Community</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <FaDiscord className="h-5 w-5 text-[#5865F2]" />
+                Discord
+              </CardTitle>
               <CardDescription>
                 Join our Discord to chat with other users and the developers.
               </CardDescription>
@@ -53,6 +56,30 @@ export default function SupportPage() {
                   <div className="flex items-center gap-2">
                     <FaDiscord className="h-5 w-5 text-[#5865F2]" />
                     Join Discord
+                  </div>
+                  <ExternalLink size={16} />
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Reddit Community */}
+          <Card className="flex flex-col">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <FaReddit className="h-5 w-5 text-[#FF4500]" />
+                Reddit
+              </CardTitle>
+              <CardDescription>
+                Join our subreddit to share notes, ideas, and feature requests.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="mt-auto">
+              <Button asChild variant="outline" className="w-full justify-between">
+                <a href="https://www.reddit.com/r/AnnotaApp/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                  <div className="flex items-center gap-2">
+                    <FaReddit className="h-5 w-5 text-[#FF4500]" />
+                    r/AnnotaApp
                   </div>
                   <ExternalLink size={16} />
                 </a>

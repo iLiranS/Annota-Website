@@ -4,6 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { SmartAppBanner } from "@/components/layout/smart-app-banner"
 import { getGithubStars } from "@/lib/github"
 import { cn } from "@/lib/utils";
 import { Metadata } from 'next';
@@ -15,6 +16,9 @@ export const metadata: Metadata = {
   description: 'Annota is a secure, local-first note taking and knowledge management tool. Own your data with end-to-end encryption for your digital mind.',
   keywords: ['annota', 'note taking', 'personal knowledge base', 'local-first', 'encrypted notes', 'digital mind', 'privacy-focused notes', 'knowledge management'],
   metadataBase: new URL('https://annota.online'),
+  itunes: {
+    appId: '6761501939',
+  },
   alternates: {
     canonical: '/',
   },
@@ -67,7 +71,8 @@ export default async function RootLayout({
           <div className="relative flex min-h-screen flex-col">
             <Header stars={stars} />
             <main className="flex-1">{children}</main>
-            <Footer />
+            <Footer stars={stars} />
+            <SmartAppBanner />
           </div>
         </ThemeProvider>
         <Analytics />

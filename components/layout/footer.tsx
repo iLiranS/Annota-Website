@@ -1,7 +1,12 @@
 import Link from "next/link"
 import Image from "next/image"
+import { FaGithub, FaStar } from "react-icons/fa"
 
-export function Footer() {
+interface FooterProps {
+  stars: number | null
+}
+
+export function Footer({ stars }: FooterProps) {
   return (
     <footer className="border-t bg-muted/40">
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
@@ -16,6 +21,20 @@ export function Footer() {
             <p className="text-center text-sm text-muted-foreground md:text-left">
               The ultimate privacy-focused workspace for your digital mind.
             </p>
+            {stars !== null && (
+              <a
+                href="https://github.com/ilirans/annota"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted/60 hover:bg-muted transition-colors border border-border/50 group w-fit mt-1"
+              >
+                <FaGithub className="w-4 h-4 text-foreground/80 group-hover:text-foreground" />
+                <div className="flex items-center gap-1">
+                  <FaStar className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs font-semibold tabular-nums text-foreground/80">{stars.toLocaleString()}</span>
+                </div>
+              </a>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-12 sm:grid-cols-3">

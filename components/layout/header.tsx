@@ -65,7 +65,7 @@ export function Header({ stars }: HeaderProps) {
               href="https://github.com/ilirans/annota"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-muted/50 hover:bg-muted transition-colors border border-border/50 group"
+              className="hidden sm:flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-muted/50 hover:bg-muted transition-colors border border-border/50 group"
             >
               <FaGithub className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <div className="flex items-center gap-0.5 sm:gap-1">
@@ -84,7 +84,13 @@ export function Header({ stars }: HeaderProps) {
               asChild
             >
               <a
-                href={platform === 'macos' || platform === 'ios' ? 'https://testflight.apple.com/join/mmgSW44D' : 'https://github.com/iLiranS/Annota/releases/latest'}
+                href={
+                  platform === 'ios'
+                    ? 'https://apps.apple.com/us/app/annota-notes/id6761501939'
+                    : platform === 'macos'
+                    ? 'https://testflight.apple.com/join/mmgSW44D'
+                    : 'https://github.com/iLiranS/Annota/releases/latest'
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative z-10 text-white flex items-center gap-2"
