@@ -83,7 +83,7 @@ export function PricingSection() {
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <Check className="h-3 w-3 text-primary" />
                       </div>
-                      Unlimited Notes & Assets
+                      Unlimited Notes & Image Assets
                     </li>
                     <li className="flex items-center gap-3">
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -101,7 +101,7 @@ export function PricingSection() {
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <Check className="h-3 w-3 text-primary" />
                       </div>
-                      Full Access to All the Features
+                      Images support only
                     </li>
                     <li className="flex items-center gap-3 font-medium text-foreground">
                       <div className="h-5 w-5 rounded-full bg-destructive/10 flex items-center justify-center shrink-0">
@@ -170,7 +170,7 @@ export function PricingSection() {
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                         <Check className="h-3 w-3 text-primary" />
                       </div>
-                      Full Access to All Features
+                      Images support only
                     </li>
                     <li className="flex items-center gap-3 text-foreground font-semibold">
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -258,6 +258,18 @@ export function PricingSection() {
                         <Check className="h-3 w-3 text-primary" />
                       </div>
                       2.5GB Secured Storage
+                    </li>
+                    <li className="flex items-center gap-3 font-semibold">
+                      <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <Check className="h-3 w-3 text-primary" />
+                      </div>
+                      PDF files support
+                    </li>
+                    <li className="flex items-center gap-3 font-semibold">
+                      <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <Check className="h-3 w-3 text-primary" />
+                      </div>
+                      Publish notes online
                     </li>
                     <li className="flex items-center gap-3 font-semibold">
                       <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">

@@ -157,7 +157,7 @@ const specialFeatures: SpecialFeatureItem[] = [
   {
     id: "exports_imports",
     title: "Import / Export",
-    description: "Markdown / HTML / PDF",
+    description: "Markdown / HTML / PDF, or publish notes online as sharable links (Pro)",
     icon: Share,
     colorClass: "text-orange-400 bg-orange-500/10 border-orange-500/20 group-hover:border-orange-500/40",
     hoverClass: "hover:border-orange-500/30 hover:shadow-orange-500/5",
