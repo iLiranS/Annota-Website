@@ -1,15 +1,19 @@
 import type { Metadata } from "next"
+import type { CSSProperties, ReactNode } from "react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { AlertCircle, Calendar, Clock } from "lucide-react"
+import { isValidElement } from "react"
 import ReactMarkdown from "react-markdown"
+import type { Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
+import rehypeRaw from "rehype-raw"
 import rehypeHighlight from "rehype-highlight"
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 
 import { getPublishedNote, getPublishedNotePath } from "@/lib/published-notes"
 import { TableOfContents } from "@/components/table-of-contents"
 import { ScrollProgress } from "@/components/scroll-progress"
-import { cn } from "@/lib/utils"
 
 interface PublishedNotePageProps {
   params: Promise<{
@@ -23,6 +27,18 @@ interface TocItem {
   level: number
 }
 
+const markdownSanitizeSchema = {
+  ...defaultSchema,
+  tagNames: [...(defaultSchema.tagNames ?? []), "details", "summary", "span", "mark", "u"],
+  attributes: {
+    ...defaultSchema.attributes,
+    code: [...(defaultSchema.attributes?.code ?? []), ["className", /^language-./]],
+    details: ["open"],
+    span: [...(defaultSchema.attributes?.span ?? []), "style"],
+    mark: [...(defaultSchema.attributes?.mark ?? []), "style"],
+  },
+}
+
 function slugify(text: string): string {
   return text
     .toLowerCase()
@@ -32,14 +48,27 @@ function slugify(text: string): string {
     .replace(/^-+|-+$/g, "")
 }
 
-function getChildrenText(children: React.ReactNode): string {
+function getChildrenText(children: ReactNode): string {
   if (typeof children === "string") return children
   if (typeof children === "number") return String(children)
   if (Array.isArray(children)) return children.map(getChildrenText).join("")
-  if (children && typeof children === "object" && "props" in children) {
-    return getChildrenText((children as any).props.children)
+  if (isValidElement<{ children?: ReactNode }>(children)) {
+    return getChildrenText(children.props.children)
   }
   return ""
+}
+
+function normalizeAnnotaMarkdown(markdown: string) {
+  return markdown.replace(/<summary>([\s\S]*?)<\/summary>/gi, (_, summary: string) => {
+    const trimmed = summary.trim()
+    const match = trimmed.match(/^(#{2,4})\s+(.+)$/)
+    if (match) {
+      const level = match[1].length
+      const text = match[2].trim()
+      return `<summary><h${level}>${text}</h${level}></summary>`
+    }
+    return `<summary>${trimmed}</summary>`
+  })
 }
 
 function extractHeadings(markdown: string): TocItem[] {
@@ -49,13 +78,26 @@ function extractHeadings(markdown: string): TocItem[] {
   const slugCounts: Record<string, number> = {}
 
   for (const line of lines) {
-    const match = line.match(/^(#{2,4})\s+(.+)$/)
-    if (match) {
-      const level = match[1].length
-      const text = match[2].trim()
+    let level = 0
+    let text = ""
+
+    const markdownMatch = line.match(/^(#{2,4})\s+(.+)$/)
+    if (markdownMatch) {
+      level = markdownMatch[1].length
+      text = markdownMatch[2].trim()
+    } else {
+      const htmlMatch = line.match(/<h([2-4])(?:\s+[^>]*)*>([\s\S]*?)<\/h\1>/i)
+      if (htmlMatch) {
+        level = parseInt(htmlMatch[1], 10)
+        text = htmlMatch[2].trim()
+      }
+    }
+
+    if (level > 0 && text) {
       const cleanText = text
         .replace(/\[([^\]]+)]\([^)]*\)/g, "$1") // link text
         .replace(/[*_`~]/g, "") // markdown formatting
+        .replace(/<[^>]+>/g, "") // remove HTML tags
 
       let slug = slugify(cleanText)
       if (slugCounts[slug] !== undefined) {
@@ -118,8 +160,9 @@ export default async function PublishedNotePage({ params }: PublishedNotePagePro
     notFound()
   }
 
-  const readTime = getReadTime(note.md_data)
-  const headings = extractHeadings(note.md_data)
+  const markdown = normalizeAnnotaMarkdown(note.md_data)
+  const readTime = getReadTime(markdown)
+  const headings = extractHeadings(markdown)
 
   const headingCounts: Record<string, number> = {}
 
@@ -134,18 +177,34 @@ export default async function PublishedNotePage({ params }: PublishedNotePagePro
     return slug
   }
 
-  const headingComponents = {
-    h2: ({ node, children, ...props }: any) => {
+  const markdownComponents: Components = {
+    h2: (componentProps) => {
+      const { node, children, ...props } = componentProps
+      void node
       const id = getUniqueSlug(getChildrenText(children))
       return <h2 id={id} {...props}>{children}</h2>
     },
-    h3: ({ node, children, ...props }: any) => {
+    h3: (componentProps) => {
+      const { node, children, ...props } = componentProps
+      void node
       const id = getUniqueSlug(getChildrenText(children))
       return <h3 id={id} {...props}>{children}</h3>
     },
-    h4: ({ node, children, ...props }: any) => {
+    h4: (componentProps) => {
+      const { node, children, ...props } = componentProps
+      void node
       const id = getUniqueSlug(getChildrenText(children))
       return <h4 id={id} {...props}>{children}</h4>
+    },
+    span: (componentProps) => {
+      const { node, style, children, ...props } = componentProps
+      void node
+      return <span {...props} style={getSafeAnnotaStyle(style, "span")}>{children}</span>
+    },
+    mark: (componentProps) => {
+      const { node, style, children, ...props } = componentProps
+      void node
+      return <mark {...props} style={getSafeAnnotaStyle(style, "mark")}>{children}</mark>
     },
   }
 
@@ -183,10 +242,10 @@ export default async function PublishedNotePage({ params }: PublishedNotePagePro
           <div className="prose prose-neutral max-w-none dark:prose-invert prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[[rehypeHighlight, { detect: true }]]}
-              components={headingComponents}
+              rehypePlugins={[rehypeRaw, [rehypeSanitize, markdownSanitizeSchema], [rehypeHighlight, { detect: true }]]}
+              components={markdownComponents}
             >
-              {note.md_data}
+              {markdown}
             </ReactMarkdown>
           </div>
         </article>
@@ -210,12 +269,67 @@ function formatDate(value: string) {
   }).format(new Date(value))
 }
 
+function getSafeAnnotaStyle(style: unknown, tagName: "span" | "mark"): CSSProperties | undefined {
+  const properties = parseStyle(style)
+  const safeStyle: CSSProperties = {}
+
+  if (tagName === "span" && isSafeColor(properties.color)) {
+    safeStyle.color = properties.color
+  }
+
+  if (tagName === "mark" && isSafeColor(properties.backgroundColor)) {
+    safeStyle.backgroundColor = properties.backgroundColor
+  }
+
+  return Object.keys(safeStyle).length > 0 ? safeStyle : undefined
+}
+
+function parseStyle(style: unknown) {
+  const properties: Record<string, string> = {}
+
+  if (typeof style === "string") {
+    for (const declaration of style.split(";")) {
+      const [rawName, ...rawValue] = declaration.split(":")
+      if (!rawName || rawValue.length === 0) continue
+
+      const name = rawName.trim().toLowerCase()
+      const value = rawValue.join(":").trim()
+
+      if (name === "color") {
+        properties.color = value
+      } else if (name === "background-color") {
+        properties.backgroundColor = value
+      }
+    }
+  } else if (style && typeof style === "object") {
+    const styleObject = style as Record<string, unknown>
+    if (typeof styleObject.color === "string") {
+      properties.color = styleObject.color
+    }
+    if (typeof styleObject.backgroundColor === "string") {
+      properties.backgroundColor = styleObject.backgroundColor
+    }
+  }
+
+  return properties
+}
+
+function isSafeColor(value: string | undefined) {
+  if (!value) return false
+
+  return (
+    /^#[\da-f]{3}(?:[\da-f]{3})?$/i.test(value) ||
+    /^rgba?\(\s*(?:\d{1,3}\s*,\s*){2}\d{1,3}(?:\s*,\s*(?:0|1|0?\.\d+))?\s*\)$/i.test(value)
+  )
+}
+
 function getMarkdownDescription(markdown: string) {
   const plainText = markdown
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/`([^`]+)`/g, "$1")
     .replace(/!\[[^\]]*]\([^)]*\)/g, " ")
     .replace(/\[([^\]]+)]\([^)]*\)/g, "$1")
+    .replace(/<[^>]+>/g, " ")
     .replace(/[#>*_~\-\n\r]+/g, " ")
     .replace(/\s+/g, " ")
     .trim()
@@ -229,6 +343,7 @@ function getReadTime(markdown: string) {
     .replace(/`([^`]+)`/g, "$1")
     .replace(/!\[[^\]]*]\([^)]*\)/g, " ")
     .replace(/\[([^\]]+)]\([^)]*\)/g, "$1")
+    .replace(/<[^>]+>/g, " ")
     .replace(/[#>*_~\-\n\r]+/g, " ")
     .replace(/\s+/g, " ")
     .trim()

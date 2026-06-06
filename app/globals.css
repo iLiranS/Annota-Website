@@ -192,6 +192,51 @@
     color: var(--foreground);
 }
 
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after,
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after {
+    content: none;
+}
+
+.prose ul.contains-task-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.prose li.task-list-item {
+    padding-left: 0;
+}
+
+.prose li.task-list-item::marker {
+    content: "";
+}
+
+.prose li.task-list-item > input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.prose details {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+}
+
+.prose summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.prose summary h2,
+.prose summary h3,
+.prose summary h4 {
+    display: inline;
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
 /* Token colors — scoped under .prose to beat typography specificity */
 .prose .hljs-comment,
 .prose .hljs-quote {
@@ -262,4 +307,3 @@
 .prose .hljs-link {
     text-decoration: underline;
 }
-
