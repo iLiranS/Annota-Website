@@ -8,7 +8,7 @@
 
 
 :root {
-  --background: oklch(1 0 0);
+  --background: oklch(0.985 0.01 85);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -131,3 +131,135 @@
     @apply font-sans;
   }
 }
+
+/* 
+ * Custom Highlight.js theme supporting Light and Dark modes.
+ * Based on Atom One Light and Atom One Dark themes.
+ * Scoped under .prose to override Tailwind Typography defaults.
+ */
+
+:root {
+    /* Atom One Light */
+    --hljs-bg: #fafafa;
+    --hljs-color: #383a42;
+    --hljs-comment: #a0a1a7;
+    --hljs-keyword: #a626a4;
+    --hljs-section: #e45649;
+    --hljs-literal: #0184bb;
+    --hljs-string: #50a14f;
+    --hljs-attr: #986801;
+    --hljs-symbol: #4078f2;
+    --hljs-built_in: #c18401;
+}
+
+
+/* Explicit dark mode class (used by Tailwind and our theme hook) */
+.dark {
+    --hljs-bg: #181a20;
+    --hljs-color: #abb2bf;
+    --hljs-comment: #5c6370;
+    --hljs-keyword: #c678dd;
+    --hljs-section: #e06c75;
+    --hljs-literal: #56b6c2;
+    --hljs-string: #98c379;
+    --hljs-attr: #d19a66;
+    --hljs-symbol: #61aeee;
+    --hljs-built_in: #e6c07b;
+}
+
+/* Override Tailwind Typography pre/code styles for highlighted code blocks */
+.prose pre:has(code.hljs) {
+    background-color: var(--hljs-bg);
+    color: var(--hljs-color);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0;
+    overflow: hidden;
+}
+
+.prose pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
+    color: var(--hljs-color);
+    background: transparent;
+    font-size: 0.875em;
+    line-height: 1.7;
+}
+
+/* Ensure inline code keeps prose styling */
+.prose :not(pre) > code {
+    color: var(--foreground);
+}
+
+/* Token colors — scoped under .prose to beat typography specificity */
+.prose .hljs-comment,
+.prose .hljs-quote {
+    color: var(--hljs-comment);
+    font-style: italic;
+}
+
+.prose .hljs-doctag,
+.prose .hljs-keyword,
+.prose .hljs-formula {
+    color: var(--hljs-keyword);
+}
+
+.prose .hljs-section,
+.prose .hljs-name,
+.prose .hljs-selector-tag,
+.prose .hljs-deletion,
+.prose .hljs-subst {
+    color: var(--hljs-section);
+}
+
+.prose .hljs-literal {
+    color: var(--hljs-literal);
+}
+
+.prose .hljs-string,
+.prose .hljs-regexp,
+.prose .hljs-addition,
+.prose .hljs-attribute,
+.prose .hljs-meta .hljs-string {
+    color: var(--hljs-string);
+}
+
+.prose .hljs-attr,
+.prose .hljs-variable,
+.prose .hljs-template-variable,
+.prose .hljs-type,
+.prose .hljs-selector-class,
+.prose .hljs-selector-attr,
+.prose .hljs-selector-pseudo,
+.prose .hljs-number {
+    color: var(--hljs-attr);
+}
+
+.prose .hljs-symbol,
+.prose .hljs-bullet,
+.prose .hljs-link,
+.prose .hljs-meta,
+.prose .hljs-selector-id,
+.prose .hljs-title {
+    color: var(--hljs-symbol);
+}
+
+.prose .hljs-built_in,
+.prose .hljs-title.class_,
+.prose .hljs-class .hljs-title {
+    color: var(--hljs-built_in);
+}
+
+.prose .hljs-emphasis {
+    font-style: italic;
+}
+
+.prose .hljs-strong {
+    font-weight: bold;
+}
+
+.prose .hljs-link {
+    text-decoration: underline;
+}
+

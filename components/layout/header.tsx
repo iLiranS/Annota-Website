@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 import { getPlatform, type Platform } from "@/utils/getPlatform"
 import { FaApple, FaWindows, FaLinux, FaAndroid, FaGithub, FaStar } from "react-icons/fa"
 import { motion } from "framer-motion"
+import { usePathname } from "next/navigation"
 
 interface HeaderProps {
   stars: number | null
@@ -17,6 +18,8 @@ interface HeaderProps {
 export function Header({ stars }: HeaderProps) {
   const [platform, setPlatform] = useState<Platform | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
+  const isNotePage = pathname?.startsWith("/notes/")
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +29,29 @@ export function Header({ stars }: HeaderProps) {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  if (isNotePage) {
+    return (
+      <header className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-300",
+        isScrolled
+          ? "border-b bg-background/80 backdrop-blur-md"
+          : "border-transparent bg-transparent"
+      )}>
+        <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+          <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-90">
+            <div className="flex h-8 w-8 items-center justify-center">
+              <Image src={'/assets/logo.png'} alt="Annota Logo" width={24} height={24} />
+            </div>
+            <span className="text-xl font-bold tracking-tight">Annota</span>
+          </Link>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
+    )
+  }
 
   return (
     <header className={cn(
@@ -88,8 +114,8 @@ export function Header({ stars }: HeaderProps) {
                   platform === 'ios'
                     ? 'https://apps.apple.com/us/app/annota-notes/id6761501939'
                     : platform === 'macos'
-                    ? 'https://testflight.apple.com/join/mmgSW44D'
-                    : 'https://github.com/iLiranS/Annota/releases/latest'
+                      ? 'https://testflight.apple.com/join/mmgSW44D'
+                      : 'https://github.com/iLiranS/Annota/releases/latest'
                 }
                 target="_blank"
                 rel="noopener noreferrer"
