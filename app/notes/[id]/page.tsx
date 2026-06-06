@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { notFound } from "next/navigation"
+import { AlertCircle, Calendar, Clock } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 
@@ -58,15 +60,29 @@ export default async function PublishedNotePage({ params }: PublishedNotePagePro
 
   return (
     <article className="container mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-      <header className="mb-10 border-b border-border/70 pb-8">
+      <header className="mb-8 border-b border-border/70 pb-8">
 
         <h1 className="text-balance text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
           {note.title}
         </h1>
-        <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-          <time dateTime={note.published_at}>Published at {formatDate(note.published_at)}</time>
-          <span className="text-muted-foreground/50" aria-hidden="true">•</span>
-          <span>{readTime} min read</span>
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div className="flex flex-wrap gap-2">
+            <div className="flex items-center gap-1.5 rounded-full bg-muted/60 px-3 py-1 text-muted-foreground border border-border/40">
+              <Calendar className="h-3.5 w-3.5 text-muted-foreground/80" />
+              <time dateTime={note.published_at}>Published {formatDate(note.published_at)}</time>
+            </div>
+            <div className="flex items-center gap-1.5 rounded-full bg-muted/60 px-3 py-1 text-muted-foreground border border-border/40">
+              <Clock className="h-3.5 w-3.5 text-muted-foreground/80" />
+              <span>{readTime} min read</span>
+            </div>
+          </div>
+          <Link
+            href="/support"
+            className="flex items-center gap-1 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 px-2.5 py-1 text-amber-600 dark:text-amber-400 font-medium transition-colors"
+          >
+            <AlertCircle className="h-3.5 w-3.5" />
+            <span>Report</span>
+          </Link>
         </div>
       </header>
 
