@@ -133,11 +133,6 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
             onClick={(e) => handleScrollTo(e, heading.id)}
             className="group relative flex h-3 items-center focus:outline-none"
           >
-            {/* Tooltip on the left of the bar */}
-            <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-150 bg-popover/95 border border-border/60 text-foreground px-2 py-1 rounded-md shadow-sm text-[11px] font-medium text-nowrap pointer-events-none backdrop-blur-xs select-none">
-              {heading.text}
-            </span>
-
             {/* Visual line representation */}
             <div
               className={cn(
@@ -147,6 +142,19 @@ export function TableOfContents({ headings }: TableOfContentsProps) {
                   : `bg-muted-foreground/25 group-hover:bg-muted-foreground/60 ${barWidth}`
               )}
             />
+
+            {/* Title on the right of the bar (active = primary, hover = muted non-accent) */}
+            <span
+              className={cn(
+                "absolute left-full ml-2.5 top-1/2 -translate-y-1/2 text-[11px] font-semibold transition-all duration-300 ease-out pointer-events-none select-none block truncate",
+                isActive
+                  ? "text-primary opacity-100 translate-x-0 max-w-[80px] lg:max-w-[100px] xl:max-w-[140px] 2xl:max-w-[200px]"
+                  : "text-muted-foreground/80 opacity-0 -translate-x-2 max-w-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:max-w-[80px] lg:group-hover:max-w-[100px] xl:group-hover:max-w-[140px] 2xl:group-hover:max-w-[200px]"
+              )}
+              title={heading.text}
+            >
+              {heading.text}
+            </span>
           </a>
         )
       })}

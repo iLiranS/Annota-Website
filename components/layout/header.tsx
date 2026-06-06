@@ -26,6 +26,7 @@ export function Header({ stars }: HeaderProps) {
       setIsScrolled(window.scrollY > 20)
     }
     setPlatform(getPlatform())
+    handleScroll()
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
