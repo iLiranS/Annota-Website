@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Shield, Code, Sparkles } from "lucide-react"
 import { motion, Variants } from "framer-motion"
 import { useState, useEffect } from "react"
-import { FaApple, FaGooglePlay, FaWindows, FaLinux } from "react-icons/fa"
+import { AppleIcon, GooglePlayIcon, WindowsIcon, LinuxIcon } from "@/components/ui/icons"
 import { getPlatform, type Platform } from "@/utils/getPlatform"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
@@ -95,11 +95,11 @@ export function Hero() {
             >
               {[
                 platform === 'macos'
-                  ? { id: 'macos' as Platform, name: 'TestFlight', icon: FaApple, label: 'Download from', href: 'https://testflight.apple.com/join/mmgSW44D' }
-                  : { id: 'ios' as Platform, name: 'App Store', icon: FaApple, label: 'Download on', href: 'https://apps.apple.com/us/app/annota-notes/id6761501939' },
-                { id: 'windows' as Platform, name: 'Windows', icon: FaWindows, label: 'Get it for', href: 'https://github.com/iLiranS/Annota/releases/latest' },
-                { id: 'linux' as Platform, name: 'Linux', icon: FaLinux, label: 'Get it for', href: '#' },
-                { id: 'android' as Platform, name: 'Google Play', icon: FaGooglePlay, label: 'Available on', href: '#' },
+                  ? { id: 'macos' as Platform, name: 'TestFlight', icon: AppleIcon, label: 'Download from', href: 'https://testflight.apple.com/join/mmgSW44D' }
+                  : { id: 'ios' as Platform, name: 'App Store', icon: AppleIcon, label: 'Download on', href: 'https://apps.apple.com/us/app/annota-notes/id6761501939' },
+                { id: 'windows' as Platform, name: 'Windows', icon: WindowsIcon, label: 'Get it for', href: 'https://github.com/iLiranS/Annota/releases/latest' },
+                { id: 'linux' as Platform, name: 'Linux', icon: LinuxIcon, label: 'Get it for', href: '#' },
+                { id: 'android' as Platform, name: 'Google Play', icon: GooglePlayIcon, label: 'Available on', href: '#' },
               ].map((p) => {
                 const isActive = platform === p.id;
                 const isAvailable = p.href !== '#';

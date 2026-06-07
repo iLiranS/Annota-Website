@@ -7,7 +7,8 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 import { getPlatform, type Platform } from "@/utils/getPlatform"
-import { FaApple, FaWindows, FaLinux, FaAndroid, FaGithub, FaStar } from "react-icons/fa"
+import { Github, Star } from "lucide-react"
+import { AppleIcon, WindowsIcon, LinuxIcon, AndroidIcon } from "@/components/ui/icons"
 import { motion } from "framer-motion"
 import { usePathname } from "next/navigation"
 
@@ -94,9 +95,9 @@ export function Header({ stars }: HeaderProps) {
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-muted/50 hover:bg-muted transition-colors border border-border/50 group"
             >
-              <FaGithub className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <div className="flex items-center gap-0.5 sm:gap-1">
-                <FaStar className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-yellow-500 fill-yellow-500 group-hover:scale-110 transition-transform" />
+                <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-yellow-500 fill-yellow-500 group-hover:scale-110 transition-transform" />
                 <span className="text-xs sm:text-sm font-semibold tabular-nums">{stars.toLocaleString()}</span>
               </div>
             </Link>
@@ -123,11 +124,11 @@ export function Header({ stars }: HeaderProps) {
                 className="relative z-10 text-white flex items-center gap-2"
               >
                 <span className="flex items-center gap-2 transition-transform duration-300 group-hover/button:translate-x-0.5">
-                  {platform === 'macos' && <FaApple className="h-4 w-4 transition-transform group-hover/button:-rotate-12" />}
-                  {platform === 'windows' && <FaWindows className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
-                  {platform === 'linux' && <FaLinux className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
-                  {platform === 'android' && <FaAndroid className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
-                  {platform === 'ios' && <FaApple className="h-4 w-4 transition-transform group-hover/button:-rotate-12" />}
+                  {platform === 'macos' && <AppleIcon className="h-4 w-4 transition-transform group-hover/button:-rotate-12" />}
+                  {platform === 'windows' && <WindowsIcon className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
+                  {platform === 'linux' && <LinuxIcon className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
+                  {platform === 'android' && <AndroidIcon className="h-4 w-4 transition-transform group-hover/button:rotate-12" />}
+                  {platform === 'ios' && <AppleIcon className="h-4 w-4 transition-transform group-hover/button:-rotate-12" />}
                 </span>
                 Download App
                 <motion.div

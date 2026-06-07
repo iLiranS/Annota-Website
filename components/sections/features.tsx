@@ -171,7 +171,7 @@ function BrowserChrome({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950 flex flex-col aspect-video w-full mt-1.5 sm:mt-2 shrink-0">
       {/* Traffic lights */}
-      <div className="flex items-center gap-1 px-2.5 py-1.5 border-b border-zinc-850 bg-zinc-900/60 shrink-0">
+      <div className="flex items-center gap-1 px-2.5 py-1.5 border-b border-zinc-500/20 bg-zinc-900/60 shrink-0">
         <span className="w-1.5 h-1.5 rounded-full bg-red-500/40" />
         <span className="w-1.5 h-1.5 rounded-full bg-yellow-500/40" />
         <span className="w-1.5 h-1.5 rounded-full bg-green-500/40" />

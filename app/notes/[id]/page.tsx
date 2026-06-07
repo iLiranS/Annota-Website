@@ -1,3 +1,4 @@
+import React, { isValidElement, Children } from "react"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -14,6 +15,7 @@ import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 import { getPublishedNote, getPublishedNotePath } from "@/lib/published-notes"
 import { TableOfContents } from "@/components/table-of-contents"
 import { ScrollProgress } from "@/components/scroll-progress"
+import { Mermaid } from "@/components/mermaid"
 import { normalizeAnnotaMarkdown } from "@/lib/notes/normalize-annota-markdown"
 import { stripTitle } from "@/lib/notes/strip-title"
 import { getReadTime } from "@/lib/notes/get-read-time"
@@ -141,6 +143,31 @@ export default async function PublishedNotePage({ params }: PublishedNotePagePro
           {children}
         </details>
       )
+    },
+    code: (componentProps) => {
+      const { node, className, children, ...props } = componentProps
+      void node
+      const match = /language-mermaid/.exec(className || "")
+      if (match) {
+        return <Mermaid chart={String(children).replace(/\n$/, "")} />
+      }
+      return <code className={className} {...props}>{children}</code>
+    },
+    pre: (componentProps) => {
+      const { node, children, ...props } = componentProps
+      void node
+
+      const isMermaid = Children.toArray(children).some(
+        (child) =>
+          isValidElement(child) &&
+          /language-mermaid/.test((child.props as any)?.className || "")
+      )
+
+      if (isMermaid) {
+        return <>{children}</>
+      }
+
+      return <pre {...props}>{children}</pre>
     },
   }
 

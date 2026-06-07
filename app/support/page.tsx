@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, ExternalLink } from "lucide-react"
-import { FaDiscord, FaReddit } from "react-icons/fa"
+import { DiscordIcon, RedditIcon } from "@/components/ui/icons"
 
 export default function SupportPage() {
   return (
@@ -43,7 +43,7 @@ export default function SupportPage() {
           <Card className="flex flex-col">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <FaDiscord className="h-5 w-5 text-[#5865F2]" />
+                <DiscordIcon className="h-5 w-5 text-[#5865F2]" />
                 Discord
               </CardTitle>
               <CardDescription>
@@ -54,7 +54,7 @@ export default function SupportPage() {
               <Button asChild variant="outline" className="w-full justify-between">
                 <a href="https://discord.gg/dG5nNJPDAh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   <div className="flex items-center gap-2">
-                    <FaDiscord className="h-5 w-5 text-[#5865F2]" />
+                    <DiscordIcon className="h-5 w-5 text-[#5865F2]" />
                     Join Discord
                   </div>
                   <ExternalLink size={16} />
@@ -67,7 +67,7 @@ export default function SupportPage() {
           <Card className="flex flex-col">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <FaReddit className="h-5 w-5 text-[#FF4500]" />
+                <RedditIcon className="h-5 w-5 text-[#FF4500]" />
                 Reddit
               </CardTitle>
               <CardDescription>
@@ -78,7 +78,7 @@ export default function SupportPage() {
               <Button asChild variant="outline" className="w-full justify-between">
                 <a href="https://www.reddit.com/r/AnnotaApp/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                   <div className="flex items-center gap-2">
-                    <FaReddit className="h-5 w-5 text-[#FF4500]" />
+                    <RedditIcon className="h-5 w-5 text-[#FF4500]" />
                     r/AnnotaApp
                   </div>
                   <ExternalLink size={16} />
