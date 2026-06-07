@@ -9,6 +9,7 @@ export interface PublishedNote {
   md_data: string
   published_at: string
   updated_at: string
+  is_admin: boolean
 }
 
 export function getPublishedNoteTag(noteId: string) {
@@ -73,6 +74,7 @@ function isPublishedNote(value: unknown): value is PublishedNote {
     typeof note.title === "string" &&
     typeof note.md_data === "string" &&
     typeof note.published_at === "string" &&
-    typeof note.updated_at === "string"
+    typeof note.updated_at === "string" &&
+    typeof note.is_admin === "boolean"
   )
 }

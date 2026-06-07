@@ -2,7 +2,7 @@ import React, { isValidElement, Children } from "react"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { AlertCircle, Calendar, Clock } from "lucide-react"
+import { AlertCircle, Calendar, Clock, ShieldCheck } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 import type { Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
@@ -158,9 +158,9 @@ export default async function PublishedNotePage({ params }: PublishedNotePagePro
       void node
 
       const isMermaid = Children.toArray(children).some(
-        (child) =>
-          isValidElement(child) &&
-          /language-mermaid/.test((child.props as any)?.className || "")
+          (child) =>
+              isValidElement(child) &&
+              /language-mermaid/.test((child.props as any)?.className || "")
       )
 
       if (isMermaid) {
@@ -183,6 +183,12 @@ export default async function PublishedNotePage({ params }: PublishedNotePagePro
               </h1>
               <div className="mt-5 flex flex-wrap items-center justify-between gap-2 text-xs">
                 <div className="flex flex-wrap gap-2">
+                  {note.is_admin && (
+                    <div className="flex items-center gap-1.5 rounded-full bg-blue-500/10 dark:bg-blue-400/10 px-3 py-1 text-blue-600 dark:text-blue-400 border border-blue-500/20 dark:border-blue-400/20 font-semibold">
+                      <ShieldCheck className="h-3.5 w-3.5 text-blue-500 dark:text-blue-400" />
+                      <span>Official</span>
+                    </div>
+                  )}
                   <div className="flex items-center gap-1.5 rounded-full bg-muted/60 px-3 py-1 text-muted-foreground border border-border/40">
                     <Calendar className="h-3.5 w-3.5 text-primary" />
                     <time dateTime={note.published_at}> {formatDate(note.published_at)}</time>
@@ -192,13 +198,15 @@ export default async function PublishedNotePage({ params }: PublishedNotePagePro
                     <span>{readTime} min</span>
                   </div>
                 </div>
-                <Link
-                  href="/support"
-                  className="flex items-center gap-1 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 px-2.5 py-1 text-amber-600 dark:text-amber-400 font-medium transition-colors"
-                >
-                  <AlertCircle className="h-3.5 w-3.5" />
-                  <span>Report</span>
-                </Link>
+                {!note.is_admin && (
+                  <Link
+                    href="/support"
+                    className="flex items-center gap-1 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 px-2.5 py-1 text-amber-600 dark:text-amber-400 font-medium transition-colors"
+                  >
+                    <AlertCircle className="h-3.5 w-3.5" />
+                    <span>Report</span>
+                  </Link>
+                )}
               </div>
             </header>
 
