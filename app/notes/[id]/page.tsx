@@ -36,16 +36,16 @@ interface PublishedNotePageProps {
 const markdownSanitizeSchema = {
   ...defaultSchema,
   tagNames: [
-    ...(defaultSchema.tagNames ?? []),
+    ...(defaultSchema.tagNames ?? []).filter((tag) => tag !== "img"),
     "details", "summary", "span", "mark", "u", "div",
   ],
   attributes: {
     ...defaultSchema.attributes,
     code: [...(defaultSchema.attributes?.code ?? []), ["className", /^language-./, "math-inline", "math-display"]],
     details: ["open"],
-    // Allow any className + style on spans/divs — content is from the user's own notes (trusted)
-    span: [...(defaultSchema.attributes?.span ?? []), "style", "className"],
-    div: ["style", "className"],
+    // Allow only style on spans/divs/marks — className is stripped for security
+    span: [...(defaultSchema.attributes?.span ?? []), "style"],
+    div: ["style"],
     mark: [...(defaultSchema.attributes?.mark ?? []), "style"],
   },
 }
@@ -130,9 +130,37 @@ export default async function PublishedNotePage({ params }: PublishedNotePagePro
       const id = getUniqueSlug(getChildrenText(children))
       return <h4 id={id} {...props}>{children}</h4>
     },
-    mark: (componentProps) => {
-      const { node, style, children, ...props } = componentProps
+    a: (componentProps) => {
+      const { node, href, children, ...props } = componentProps
       void node
+      const isExternal = href?.startsWith("http://") || href?.startsWith("https://")
+      return (
+        <a
+          {...props}
+          href={href}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noopener noreferrer nofollow" : undefined}
+        >
+          {children}
+        </a>
+      )
+    },
+    span: (componentProps) => {
+      const { node, style, className, children, ...props } = componentProps
+      void node
+      void className
+      return <span {...props} style={getSafeAnnotaStyle(style, "span")}>{children}</span>
+    },
+    div: (componentProps) => {
+      const { node, style, className, children, ...props } = componentProps
+      void node
+      void className
+      return <div {...props} style={getSafeAnnotaStyle(style, "div")}>{children}</div>
+    },
+    mark: (componentProps) => {
+      const { node, style, className, children, ...props } = componentProps
+      void node
+      void className
       return <mark {...props} style={getSafeAnnotaStyle(style, "mark")}>{children}</mark>
     },
     details: (componentProps) => {
