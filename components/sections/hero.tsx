@@ -95,7 +95,7 @@ export function Hero() {
             >
               {[
                 platform === 'macos'
-                  ? { id: 'macos' as Platform, name: 'TestFlight', icon: AppleIcon, label: 'Download from', href: 'https://testflight.apple.com/join/mmgSW44D' }
+                  ? { id: 'macos' as Platform, name: 'App Store', icon: AppleIcon, label: 'Download on', href: 'https://apps.apple.com/us/app/annota-notes/id6761501939' }
                   : { id: 'ios' as Platform, name: 'App Store', icon: AppleIcon, label: 'Download on', href: 'https://apps.apple.com/us/app/annota-notes/id6761501939' },
                 { id: 'windows' as Platform, name: 'Windows', icon: WindowsIcon, label: 'Get it for', href: 'https://github.com/iLiranS/Annota/releases/latest' },
                 { id: 'linux' as Platform, name: 'Linux', icon: LinuxIcon, label: 'Get it for', href: '#' },

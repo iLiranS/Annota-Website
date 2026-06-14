@@ -116,7 +116,7 @@ export function Header({ stars }: HeaderProps) {
                   platform === 'ios'
                     ? 'https://apps.apple.com/us/app/annota-notes/id6761501939'
                     : platform === 'macos'
-                      ? 'https://testflight.apple.com/join/mmgSW44D'
+                      ? 'https://apps.apple.com/us/app/annota-notes/id6761501939'
                       : 'https://github.com/iLiranS/Annota/releases/latest'
                 }
                 target="_blank"
