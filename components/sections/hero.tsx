@@ -70,24 +70,6 @@ export function Hero() {
               Your digital mind <br /> <span className="text-primary italic">Simple & Secure</span>
             </motion.h1>
 
-            {/* Product Hunt Badge */}
-            <motion.div className="my-1 sm:my-2 flex justify-center">
-              <a 
-                href="https://www.producthunt.com/products/annota?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-annota" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="transition-transform duration-200 hover:scale-[1.03] active:scale-95 block"
-              >
-                <img 
-                  src={isDark ? "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1173022&theme=dark&t=1781611934827" : "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1173022&theme=light&t=1781611925319"} 
-                  alt="Annota - Cross Platform, Local First AI powered Note Taking App | Product Hunt" 
-                  width="250" 
-                  height="54"
-                  className="w-[180px] h-[39px] sm:w-[250px] sm:h-[54px]"
-                />
-              </a>
-            </motion.div>
-
             <motion.div className="flex items-center justify-center p-1 rounded-full sm:rounded-2xl bg-muted/30 border border-border/50 w-full sm:w-auto overflow-hidden">
               {/* Trust & Community Badges grouped together */}
               <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 whitespace-nowrap">

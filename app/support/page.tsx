@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, ExternalLink } from "lucide-react"
-import { DiscordIcon, RedditIcon } from "@/components/ui/icons"
 
 export default function SupportPage() {
   return (
@@ -16,9 +15,9 @@ export default function SupportPage() {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="flex justify-center">
           {/* Email Support */}
-          <Card className="bg-primary/5 border-primary/20 flex flex-col">
+          <Card className="bg-primary/5 border-primary/20 flex flex-col max-w-md w-full">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Mail className="h-5 w-5 text-primary" />
@@ -36,54 +35,6 @@ export default function SupportPage() {
                 <span className="font-medium">support@annota.online</span>
                 <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary" />
               </a>
-            </CardContent>
-          </Card>
-
-          {/* Discord Community */}
-          <Card className="flex flex-col">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <DiscordIcon className="h-5 w-5 text-[#5865F2]" />
-                Discord
-              </CardTitle>
-              <CardDescription>
-                Join our Discord to chat with other users and the developers.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="mt-auto">
-              <Button asChild variant="outline" className="w-full justify-between">
-                <a href="https://discord.gg/dG5nNJPDAh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  <div className="flex items-center gap-2">
-                    <DiscordIcon className="h-5 w-5 text-[#5865F2]" />
-                    Join Discord
-                  </div>
-                  <ExternalLink size={16} />
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Reddit Community */}
-          <Card className="flex flex-col">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <RedditIcon className="h-5 w-5 text-[#FF4500]" />
-                Reddit
-              </CardTitle>
-              <CardDescription>
-                Join our subreddit to share notes, ideas, and feature requests.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="mt-auto">
-              <Button asChild variant="outline" className="w-full justify-between">
-                <a href="https://www.reddit.com/r/AnnotaApp/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  <div className="flex items-center gap-2">
-                    <RedditIcon className="h-5 w-5 text-[#FF4500]" />
-                    r/AnnotaApp
-                  </div>
-                  <ExternalLink size={16} />
-                </a>
-              </Button>
             </CardContent>
           </Card>
         </div>

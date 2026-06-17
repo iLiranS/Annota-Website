@@ -19,30 +19,15 @@ export default function TermsOfServicePage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground">2. Description of Service</h2>
             <p>
-              Annota is a cross-platform, local-first note-taking and annotation application. The service includes local storage of notes, end-to-end encrypted synchronization, and premium features accessible via a paid subscription. We prioritize your privacy and do not use third-party performance or tracking tools.
+              Annota is a cross-platform, local-first note-taking and annotation application. The service includes local storage of notes and end-to-end encrypted synchronization. We prioritize your privacy and do not use third-party performance or tracking tools.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-foreground">3. Subscriptions and Billing</h2>
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-medium text-foreground">Payments</h3>
-                <p>Premium features require a paid subscription (monthly or annual). Payments are processed through our third-party payment providers.</p>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium text-foreground">Auto-Renewal</h3>
-                <p>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current billing period.</p>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium text-foreground">Cancellations</h3>
-                <p>You may cancel your subscription at any time through your account settings or the respective app store (Apple App Store, Google Play Store). Your premium access will continue until the end of your current billing cycle.</p>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium text-foreground">Price Changes</h3>
-                <p>We reserve the right to modify our pricing at any time. Active subscribers will be notified in advance of any price changes affecting their recurring billing.</p>
-              </div>
-            </div>
+            <h2 className="text-2xl font-semibold text-foreground">3. Service Fees</h2>
+            <p>
+              Annota is provided free of charge. There are no subscription fees or premium payment options.
+            </p>
           </section>
 
           <section>
@@ -62,7 +47,7 @@ export default function TermsOfServicePage() {
               </div>
               <div>
                 <h3 className="text-lg font-medium text-foreground">Data Retention (Inactive Accounts)</h3>
-                <p>For non-pro (Free) users, cloud-synced data is subject to deletion if the account remains inactive for more than 90 consecutive days. We reserve the right to delete all encrypted data stored on our servers for such inactive accounts to optimize resources. This policy does not apply to active Pro subscribers or any data stored locally on your devices.</p>
+                <p>Cloud-synced data is subject to deletion if the account remains inactive for more than 90 consecutive days. We reserve the right to delete all encrypted data stored on our servers for such inactive accounts to optimize resources. This policy does not apply to any data stored locally on your devices.</p>
               </div>
               <div>
                 <h3 className="text-lg font-medium text-foreground">AI Features</h3>

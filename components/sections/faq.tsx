@@ -49,15 +49,11 @@ const faqs = [
   },
   {
     question: "Is Annota free to use?",
-    answer: "Yes! Annota is 100% free to use if you choose to keep your data local-only on your device. We also offer cloud synchronization for free for up to 50 notes. If you wish to synchronize more than 50 notes across your devices, an active subscription is required."
-  },
-  {
-    question: "What happens if I cancel my subscription?",
-    answer: "If you cancel, you'll still have full access to your local notes. Your data remains on your device. You'll simply lose access to cloud synchronization and premium storage limits once your billing cycle ends."
+    answer: "Yes! Annota is 100% free and open-source. All core features, including local-first storage and cross-device synchronization, are available to everyone without any subscriptions or fees."
   },
   {
     question: "How long is my data stored if I'm inactive?",
-    answer: "For non-pro (Free) users, cloud-synced data is deleted if the account remains inactive for more than 90 consecutive days. This help us maintain a fast and efficient service for everyone. Note that this only applies to data on our servers; your local notes on your device are never deleted by us."
+    answer: "Cloud-synced data is subject to deletion if the account remains inactive for more than 90 consecutive days. This helps us maintain a fast and efficient service for active users. Note that this only applies to data on our sync servers; your local notes stored on your device are never deleted."
   },
 ]
 
@@ -88,16 +84,14 @@ export function FaqSection() {
             transition={{ delay: 0.1 }}
             className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            Have more questions? Join our{" "}
+            Have more questions? Contact us at{" "}
             <a
-              href="https://discord.gg/dG5nNJPDAh"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:support@annota.online"
               className="text-primary font-bold hover:underline transition-all"
             >
-              Discord server
+              support@annota.online
             </a>{" "}
-            to connect with the community and get direct support.
+            for direct support.
           </motion.p>
         </div>
 

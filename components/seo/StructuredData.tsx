@@ -25,7 +25,6 @@ export function StructuredData() {
     "url": "https://annota.online",
     "logo": "https://annota.online/assets/logo.png",
     "sameAs": [
-      "https://discord.gg/dG5nNJPDAh",
       "https://github.com/iLiranS/Annota"
     ]
   };
